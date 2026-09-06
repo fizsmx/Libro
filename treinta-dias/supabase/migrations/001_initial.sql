@@ -2,20 +2,7 @@
 -- 30 DÍAS PARA RECONECTAR — Supabase Schema
 -- ============================================================
 
--- 1. PERFILES DE USUARIO
-CREATE TABLE IF NOT EXISTS public.perfiles (
-  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-  nombre TEXT NOT NULL,
-  email TEXT NOT NULL,
-  avatar_url TEXT,
-  pareja_id UUID REFERENCES public.parejas(id),
-  codigo_invitacion TEXT UNIQUE DEFAULT gen_random_uuid()::text,
-  es_admin BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- 2. PAREJAS (vínculo entre 2 usuarios)
+-- 1. PAREJAS (crear primero para evitar dependencia circular)
 CREATE TABLE IF NOT EXISTS public.parejas (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   usuario_1 UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -25,6 +12,19 @@ CREATE TABLE IF NOT EXISTS public.parejas (
   tiene_acceso_completo BOOLEAN DEFAULT FALSE,
   codigo_acceso_usado TEXT,
   fecha_inicio DATE,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. PERFILES DE USUARIO
+CREATE TABLE IF NOT EXISTS public.perfiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  nombre TEXT NOT NULL,
+  email TEXT NOT NULL,
+  avatar_url TEXT,
+  pareja_id UUID REFERENCES public.parejas(id),
+  codigo_invitacion TEXT UNIQUE DEFAULT gen_random_uuid()::text,
+  es_admin BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
