@@ -58,12 +58,16 @@ const FAQ_RESPONSES = {
   profesional: {
     patterns: ['terapeuta', 'psicologo', 'profesional', 'terapia real', 'reemplaza'],
     response: '⚠️ **Disclaimer importante:**\n\nEste programa es una herramienta de **apoyo y reflexión** para parejas. **NO reemplaza** la terapia profesional.\n\nSi experimentan:\n- Violencia física o emocional\n- Adicciones\n- Depresión severa\n- Infidelidad reciente traumática\n\n**Busquen ayuda de un profesional certificado.** Este programa puede complementar la terapia, pero no sustituirla.'
+  },
+  reflexion_ia: {
+    patterns: ['reflexion ia', 'pedir reflexion', 'ia', 'inteligencia artificial', 'gemini', 'reflexion personalizada'],
+    response: '__IA_REFLEXION__'
   }
 };
 
 const WELCOME_MESSAGE = {
   role: 'assistant',
-  content: '¡Hola! 💕 Soy tu asistente del programa **30 Días Para Reconectar**. Puedo ayudarte con:\n\n📘 Cómo funciona el programa\n💰 Precios y activación\n💑 Vincular a tu pareja\n🔒 Privacidad de respuestas\n📊 Niveles de conexión\n💙 Tips para conversaciones difíciles\n\n¿En qué puedo ayudarte?'
+  content: '¡Hola! 💕 Soy tu asistente del programa **30 Días Para Reconectar**. Puedo ayudarte con:\n\n📘 Cómo funciona el programa\n💰 Precios y activación\n👑 Vincular a tu pareja\n🔒 Privacidad de respuestas\n📊 Niveles de conexión\n💙 Tips para conversaciones difíciles\n🤖 **Reflexión IA** — Pide una reflexión personalizada\n\n¿En qué puedo ayudarte?'
 };
 
 function findResponse(message) {
@@ -101,12 +105,43 @@ export default function ChatBot() {
     setInput('');
     setIsTyping(true);
 
-    // Simulate typing delay
-    await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 800));
-
     const responseText = findResponse(userMessage.content);
-    const botMessage = { role: 'assistant', content: responseText };
-    setMessages(prev => [...prev, botMessage]);
+
+    // Check if it's an IA reflection request
+    if (responseText === '__IA_REFLEXION__') {
+      try {
+        // Get current day info from localStorage
+        const completedDays = JSON.parse(localStorage.getItem('completed_days') || '[]');
+        const currentDay = completedDays.length > 0 ? Math.max(...completedDays) : 1;
+        const savedAnswers = JSON.parse(localStorage.getItem(`answers_day_${currentDay}`) || '{}');
+        const firstAnswer = Object.values(savedAnswers)[0] || 'No tengo una respuesta aún';
+
+        const res = await fetch('/api/reflexion', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            pregunta: 'Reflexión general del día',
+            respuesta: firstAnswer,
+            dia: currentDay,
+            tema: `Día ${currentDay} del programa`,
+          }),
+        });
+        const data = await res.json();
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `🤖 **Reflexión IA personalizada:**\n\n${data.reflexion}${data.fallback ? '\n\n_(⚠️ Reflexión generada localmente — la IA no está disponible en este momento)_' : ''}`,
+        }]);
+      } catch {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: '🤖 No pude conectar con la IA en este momento. Intenta de nuevo en unos minutos. 💕',
+        }]);
+      }
+    } else {
+      // Normal FAQ response with typing delay
+      await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 800));
+      setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
+    }
     setIsTyping(false);
   };
 

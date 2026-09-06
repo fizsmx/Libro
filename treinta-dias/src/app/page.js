@@ -22,6 +22,9 @@ export default function HomePage() {
             <a href="#como-funciona">Cómo Funciona</a>
             <a href="#que-incluye">Qué Incluye</a>
             <a href="#precio">Precio</a>
+            <Link href="/comprar" className="btn btn-accent btn-sm">
+              📲 Comprar
+            </Link>
             <Link href="/login" className="btn btn-primary btn-sm">
               Iniciar Sesión
             </Link>

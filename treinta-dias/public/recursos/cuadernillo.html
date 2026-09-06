@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30 Días Para Reconectar — Cuadernillo Imprimible</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #1A0A2E; background: white; }
+    .page { page-break-after: always; padding: 40px; min-height: 100vh; }
+    .page:last-child { page-break-after: avoid; }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 10px; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #E8636F; margin-bottom: 8px; }
+    h3 { font-size: 1rem; color: #6C3D7A; margin-bottom: 6px; }
+    .cover { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #1A0A2E, #2D1548); color: white; }
+    .cover h1 { font-size: 2.8rem; color: white; }
+    .cover p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 500px; margin: 16px auto; }
+    .day-header { border-bottom: 2px solid #E8636F; padding-bottom: 10px; margin-bottom: 20px; }
+    .day-number { font-size: 0.8rem; color: #6C3D7A; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .question { margin-bottom: 24px; }
+    .question-num { display: inline-block; width: 24px; height: 24px; background: #E8636F; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 700; margin-right: 8px; }
+    .question-type { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: #F5F0FF; color: #6C3D7A; margin-left: 8px; }
+    .question p { font-size: 0.95rem; margin: 8px 0; line-height: 1.5; }
+    .answer-space { border: 1px dashed #ccc; border-radius: 8px; min-height: 80px; padding: 10px; margin-top: 8px; background: #FAFAFA; }
+    .answer-space::before { content: 'Tu respuesta:'; font-size: 0.7rem; color: #999; }
+    .reflection-box { background: #F5F0FF; border: 1px solid #E0D4F5; border-radius: 8px; padding: 16px; margin-top: 20px; }
+    .reflection-box h3 { color: #6C3D7A; margin-bottom: 12px; }
+    .reflection-field { margin-bottom: 12px; }
+    .reflection-field label { display: block; font-size: 0.82rem; font-weight: 600; color: #6C3D7A; margin-bottom: 4px; }
+    .reflection-field .space { border: 1px dashed #D0C4E5; border-radius: 6px; min-height: 50px; padding: 8px; background: white; }
+    .score-section { text-align: center; margin: 20px 0; padding: 16px; border: 1px solid #E8636F33; border-radius: 8px; }
+    .score-circles { display: flex; justify-content: center; gap: 6px; margin: 10px 0; }
+    .score-circle { width: 28px; height: 28px; border: 2px solid #E8636F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+    .footer { text-align: center; font-size: 0.7rem; color: #999; margin-top: 30px; padding-top: 10px; border-top: 1px solid #eee; }
+    @media print {
+      .page { padding: 20px 30px; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="page cover">
+  <div style="font-size: 4rem; margin-bottom: 20px;">💕</div>
+  <h1>30 Días Para Reconectar</h1>
+  <p>Un programa de 30 días diseñado para que tú y tu pareja trabajen juntos en fortalecer su conexión emocional</p>
+  <div style="margin-top: 40px; font-size: 0.9rem; color: rgba(255,255,255,0.5);">
+    Cuadernillo de trabajo — 300 preguntas guiadas
+  </div>
+  <div style="margin-top: 20px; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;">
+    <span style="font-size: 0.8rem;">Nombres de la pareja:</span><br>
+    <span style="font-size: 1.1rem;">_________________ y _________________</span>
+  </div>
+  <div style="margin-top: 10px; font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+    Fecha de inicio: ___/___/______
+  </div>
+</div>
+
+<!-- Instructions Page -->
+<div class="page">
+  <h2>📋 Cómo usar este cuadernillo</h2>
+  <div style="margin-top: 20px; line-height: 1.8; font-size: 0.95rem;">
+    <p><strong>1. Tiempo:</strong> Dediquen al menos 30 minutos diarios a las preguntas del día.</p>
+    <p><strong>2. Espacio seguro:</strong> Busquen un lugar tranquilo, sin distracciones.</p>
+    <p><strong>3. Honestidad:</strong> Respondan con sinceridad, sin juzgarse mutuamente.</p>
+    <p><strong>4. Escucha activa:</strong> Cuando tu pareja hable, escucha para entender, no para responder.</p>
+    <p><strong>5. Tipos de preguntas:</strong></p>
+    <ul style="margin-left: 20px; margin-top: 8px;">
+      <li>🪞 <strong>Reflexión:</strong> Para pensar individualmente</li>
+      <li>💕 <strong>Compartida:</strong> Para conversar en pareja</li>
+      <li>🌊 <strong>Profunda:</strong> Temas más íntimos y vulnerables</li>
+      <li>📊 <strong>Evaluación:</strong> Medir cómo se sienten</li>
+      <li>🤝 <strong>Compromiso:</strong> Acciones concretas</li>
+    </ul>
+    <p style="margin-top: 16px;"><strong>6. Reflexión diaria:</strong> Al final de cada día, registren cómo se sintieron.</p>
+    <p><strong>7. Conexión:</strong> Califiquen su nivel de conexión del 1 al 10.</p>
+    <p style="margin-top: 20px; padding: 12px; background: #FFF5F5; border-radius: 8px; border-left: 3px solid #E8636F;">
+      💡 <strong>Recuerda:</strong> Este programa no reemplaza la terapia profesional. Si enfrentan situaciones difíciles, busquen apoyo de un terapeuta.
+    </p>
+  </div>
+</div>
+
+<div class="no-print" style="text-align: center; padding: 20px; background: #F5F0FF;">
+  <button onclick="window.print()" style="padding: 12px 30px; background: #E8636F; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: 600;">
+    🖨️ Imprimir / Guardar como PDF
+  </button>
+  <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Usa Ctrl+P o el botón para guardar como PDF</p>
+</div>
+
+<script>
+// This script generates the 30 day pages dynamically
+const days = [
+  { n: 1, t: "Reconectando con el Inicio", tema: "Historia de la relación", qs: ["¿Cuál es tu primer recuerdo de cuando nos conocimos?","¿Qué fue lo primero que te atrajo de mí?","Describe un momento de nuestros primeros meses juntos","¿Cuándo supiste que querías estar conmigo?","¿Hay algo que hacíamos al principio que extrañas?","Si pudieras revivir un solo día juntos, ¿cuál?","¿Qué expectativas tenías sobre nuestra relación?","¿Cuál ha sido el momento más feliz juntos?","¿Qué tan conectado/a te sientes? (1-10)","¿Qué esperas lograr en estos 30 días?"] },
+  { n: 2, t: "El Lenguaje del Amor", tema: "Lenguajes del amor", qs: ["¿Cuál es tu lenguaje del amor principal?","¿Cómo expresas amor hacia tu pareja?","Describe un momento reciente donde te sentiste amado/a","¿Hay alguna forma de amor que necesitas más?","¿Qué gesto cotidiano te hace sentir especial?","¿Qué una cosa podría hacer tu pareja cada día?","¿Sientes que das más amor del que recibes?","¿Cómo aprendiste a expresar amor?","Nota a la forma de amor de tu pareja (1-10)","Tu compromiso para hablar su lenguaje de amor"] },
+  { n: 3, t: "Escuchar para Entender", tema: "Comunicación activa", qs: ["¿Te sientes escuchado/a?","¿Cuándo tu pareja realmente te entendió?","¿Escuchas para responder o para entender?","¿Hay un tema que no te sientes escuchado?","¿Qué trataba de decir tu pareja realmente?","¿Tu mayor obstáculo para escuchar sin interrumpir?","¿Te es más fácil hablar o guardar sentimientos?","¿Algo que nunca has podido expresar bien?","Nota a la comunicación (1-10)","Practica repetir lo que entendiste"] },
+  { n: 4, t: "Los Conflictos No Son el Enemigo", tema: "Manejo de conflictos", qs: ["¿Cómo reaccionas cuando hay un conflicto?","¿Cuál fue su última discusión importante?","¿Qué te gustaría haber dicho diferente?","¿Puedes identificar cuándo una discusión escala?","¿Qué temas siempre generan tensión?","¿Te sientes seguro/a expresando desacuerdos?","¿Tus padres cómo manejaban los conflictos?","¿Hay un conflicto que nunca resolvieron?","Nota al manejo de conflictos (1-10)","Una regla nueva para sus discusiones"] },
+  { n: 5, t: "Gratitud en lo Cotidiano", tema: "Gratitud", qs: ["3 cosas que agradeces de tu pareja","¿Cuándo fue la última vez que le agradeciste?","¿Tu pareja sabe lo que valoras de ella/él?","¿Qué acto de servicio nunca has agradecido?","¿La gratitud es parte de tu relación diaria?","¿Qué harías diferente si empezaran de nuevo?","¿Qué sacrificio ha hecho tu pareja por ti?","¿Te sientes valorado/a en esta relación?","Nota a la gratitud mutua (1-10)","Escribe una carta corta de agradecimiento"] },
+  { n: 6, t: "Confianza: La Base", tema: "Confianza", qs: ["¿Confías plenamente en tu pareja?","¿Ha habido alguna situación que dañó la confianza?","¿Qué necesitas para sentir confianza plena?","¿Tu pareja confía plenamente en ti?","¿Hay secretos que no has compartido?","¿Cómo reconstruirían la confianza si se rompiera?","¿Tus experiencias pasadas afectan tu capacidad de confiar?","¿Qué acción concreta demuestra confianza?","Nota a la confianza (1-10)","Un compromiso para fortalecer la confianza"] },
+  { n: 7, t: "Intimidad Emocional", tema: "Intimidad", qs: ["¿Qué significa intimidad emocional para ti?","¿Te sientes emocionalmente conectado/a?","¿Cuándo te sientes más vulnerable con tu pareja?","¿Hay barreras que te impiden abrirte?","¿Qué te da miedo compartir?","¿Tu pareja conoce tus miedos más profundos?","¿Cómo era la intimidad emocional en tu familia?","¿Qué momento de vulnerabilidad los acercó?","Nota a la intimidad emocional (1-10)","Comparte algo que nunca has dicho"] },
+  { n: 8, t: "El Peso de las Expectativas", tema: "Expectativas", qs: ["¿Qué esperas de tu pareja que no has comunicado?","¿Tus expectativas son realistas?","¿Qué expectativa de tu pareja te cuesta cumplir?","¿De dónde vienen tus expectativas sobre relaciones?","¿Han discutido por expectativas no cumplidas?","¿Qué esperabas del matrimonio/relación?","¿Puedes aceptar a tu pareja como es?","¿Qué expectativa estás dispuesto/a a soltar?","Nota al manejo de expectativas (1-10)","Comunica una expectativa importante"] },
+  { n: 9, t: "Perdonar y Soltar", tema: "Perdón", qs: ["¿Hay algo que necesitas perdonar?","¿Te cuesta pedir perdón? ¿Por qué?","¿Hay resentimientos que cargas?","¿Cómo afecta el resentimiento tu relación?","¿Qué necesitas escuchar para poder perdonar?","¿Has perdonado de verdad o solo de palabra?","¿El perdón es algo que practicaste en tu familia?","¿Qué dolería más: perder la razón o perder la relación?","Nota a la capacidad de perdonar (1-10)","Escribe lo que necesitas soltar hoy"] },
+  { n: 10, t: "Sueños Compartidos", tema: "Metas de pareja", qs: ["¿Tienen metas como pareja? ¿Cuáles?","¿A dónde se ven en 5 años juntos?","¿Hay un sueño tuyo que no has compartido?","¿Apoyas los sueños individuales de tu pareja?","¿Qué sacrificarías por un sueño compartido?","¿Han abandonado algún sueño juntos?","¿Qué te falta para sentirte realizado/a?","¿Tu pareja conoce tus sueños más profundos?","Nota a la visión compartida (1-10)","Definan 3 metas juntos para este año"] },
+  { n: 11, t: "Espacio Personal", tema: "Individualidad", qs: ["¿Respetan el espacio personal del otro?","¿Necesitas más tiempo a solas?","¿Te sientes culpable por pedir espacio?","¿Cómo equilibran lo individual y lo compartido?","¿Qué actividad disfrutas hacer solo/a?","¿Tu pareja entiende tu necesidad de espacio?","¿Confundes espacio con distancia emocional?","¿Cómo era el espacio personal en tu hogar?","Nota al respeto del espacio (1-10)","Acuerden tiempo personal esta semana"] },
+  { n: 12, t: "La Influencia de las Familias", tema: "Familia de origen", qs: ["¿Cómo era la relación de tus padres?","¿Qué patrones de tus padres repites?","¿La familia de tu pareja afecta la relación?","¿Qué aprendiste sobre relaciones en tu infancia?","¿Hay heridas de infancia que afectan tu relación?","¿Tu pareja conoce tu historia familiar?","¿Qué de tu familia NO quieres repetir?","¿Qué tradición familiar quieres conservar?","Nota a la influencia familiar (1-10)","Compartan una historia de su infancia"] },
+  { n: 13, t: "Expresar Emociones", tema: "Inteligencia emocional", qs: ["¿Te cuesta expresar lo que sientes?","¿Qué emoción reprimes con más frecuencia?","¿Tu pareja sabe cuándo estás triste?","¿Cómo manejas la frustración en la relación?","¿Expresas tu enojo de forma constructiva?","¿Te sientes juzgado/a al mostrar emociones?","¿Cómo te enseñaron a manejar emociones?","¿Qué emoción te gustaría expresar mejor?","Nota a la expresión emocional (1-10)","Practica nombrar tus emociones hoy"] },
+  { n: 14, t: "Afecto Físico", tema: "Contacto físico", qs: ["¿Estás satisfecho/a con el afecto físico?","¿Qué tipo de contacto físico necesitas más?","¿Ha cambiado el afecto físico con el tiempo?","¿Te sientes cómodo/a iniciando el contacto?","¿Tu pareja sabe qué te gusta?","¿El estrés afecta tu deseo de contacto físico?","¿Hay barreras para la intimidad física?","¿Qué significaba el afecto físico en tu familia?","Nota al afecto físico (1-10)","Aumenten el contacto físico hoy"] },
+  { n: 15, t: "Responsabilidades Compartidas", tema: "Equidad", qs: ["¿Sienten que las tareas están bien repartidas?","¿Qué tarea del hogar te frustra más?","¿Has sentido que cargas más peso que tu pareja?","¿Cómo deciden quién hace qué?","¿El trabajo doméstico genera conflictos?","¿Tu pareja reconoce tu esfuerzo?","¿Cómo se repartían las tareas en tu familia?","¿Qué cambiarías de la distribución actual?","Nota a la equidad (1-10)","Redistribuyan una tarea esta semana"] },
+  { n: 16, t: "Dinero y Finanzas", tema: "Finanzas", qs: ["¿Hablan abiertamente de dinero?","¿Tienen metas financieras como pareja?","¿El dinero genera tensión entre ustedes?","¿Cómo administran los gastos?","¿Hay gastos que te incomodan del otro?","¿Ahorran juntos? ¿Para qué?","¿Cómo manejaban el dinero en tu familia?","¿Qué cambiarías de sus finanzas?","Nota a la salud financiera (1-10)","Definan un presupuesto juntos"] },
+  { n: 17, t: "Celos y Seguridad", tema: "Celos", qs: ["¿Experimentan celos en la relación?","¿De dónde vienen tus celos?","¿Tu pareja hace algo que te genera inseguridad?","¿Cómo manejan las situaciones de celos?","¿Los celos han dañado su relación?","¿Puedes distinguir entre celos y intuición?","¿Tus experiencias pasadas alimentan tus celos?","¿Qué necesitas para sentirte seguro/a?","Nota a la seguridad emocional (1-10)","Un acuerdo para manejar los celos"] },
+  { n: 18, t: "Tecnología y Conexión", tema: "Tecnología", qs: ["¿El celular interfiere en su relación?","¿Cuánto tiempo pasan juntos sin pantallas?","¿Revisas el celular de tu pareja?","¿Las redes sociales afectan su relación?","¿Tienen límites con la tecnología?","¿Prefieren hablar en persona o por mensaje?","¿La tecnología los acerca o los aleja?","¿Qué harían con una noche sin celular?","Nota al equilibrio tecnología-relación (1-10)","Una noche sin celulares esta semana"] },
+  { n: 19, t: "Risas y Diversión", tema: "Diversión", qs: ["¿Cuándo fue la última vez que rieron juntos?","¿Qué actividad les divierte como pareja?","¿Han perdido la diversión en la relación?","¿Qué hacían antes que ya no hacen?","¿Qué nueva actividad les gustaría probar?","¿El humor es importante en su relación?","¿Pueden reírse de ustedes mismos?","¿Cuál es su chiste o recuerdo más gracioso?","Nota a la diversión (1-10)","Planifiquen algo divertido para esta semana"] },
+  { n: 20, t: "Apoyo en Momentos Difíciles", tema: "Apoyo mutuo", qs: ["¿Te sientes apoyado/a por tu pareja?","¿Cómo te apoyan en momentos de estrés?","¿Has sentido que tu pareja no estuvo cuando más la necesitabas?","¿Sabes qué necesita tu pareja cuando está mal?","¿Pides ayuda o esperas que adivinen?","¿Cómo reaccionas cuando tu pareja sufre?","¿Quién te apoyaba emocionalmente de niño/a?","¿Qué apoyo necesitas ahora mismo?","Nota al apoyo mutuo (1-10)","Pregúntale a tu pareja cómo ayudarla"] },
+  { n: 21, t: "Límites Saludables", tema: "Límites", qs: ["¿Tienes límites claros en la relación?","¿Tu pareja respeta tus límites?","¿Te cuesta decir que no?","¿Hay situaciones donde te sientes invadido/a?","¿Han hablado sobre sus límites?","¿Qué límite necesitas establecer?","¿Cómo eran los límites en tu familia?","¿Puedes respetar un límite que no entiendes?","Nota al respeto de límites (1-10)","Comunica un límite con amor hoy"] },
+  { n: 22, t: "El Pasado que Cargamos", tema: "Heridas del pasado", qs: ["¿Hay heridas del pasado que afectan tu relación?","¿Tu pareja conoce tus heridas?","¿Has sanado de relaciones anteriores?","¿Comparas tu relación con experiencias pasadas?","¿El pasado de tu pareja te afecta?","¿Qué necesitas para soltar el pasado?","¿Has buscado ayuda profesional para sanar?","¿Qué parte del pasado ya no te define?","Nota a la sanación del pasado (1-10)","Identifica una herida que quieres sanar"] },
+  { n: 23, t: "Crecer Juntos", tema: "Crecimiento", qs: ["¿Sienten que crecen juntos o se estancan?","¿Qué has aprendido de tu pareja?","¿Te inspira tu pareja a ser mejor?","¿Apoyas los cambios de tu pareja?","¿Qué área de tu vida quieres mejorar?","¿Han crecido como pareja este año?","¿El cambio les da miedo o emoción?","¿Qué versión de ustedes quieren ser?","Nota al crecimiento mutuo (1-10)","Una meta de crecimiento personal"] },
+  { n: 24, t: "Fe, Valores y Espiritualidad", tema: "Valores", qs: ["¿Comparten los mismos valores fundamentales?","¿La espiritualidad es parte de su relación?","¿Hay valores que no comparten?","¿Cómo manejan las diferencias de creencias?","¿Qué valores quieren transmitir?","¿Sus valores han cambiado con el tiempo?","¿Qué valores aprendiste en tu hogar?","¿Qué valor es innegociable para ti?","Nota a la alineación de valores (1-10)","Definan 3 valores compartidos"] },
+  { n: 25, t: "Rutina vs Aventura", tema: "Equilibrio", qs: ["¿Su relación se siente rutinaria?","¿Cuándo fue su última aventura juntos?","¿Qué rutina positiva tienen como pareja?","¿Qué rutina les gustaría romper?","¿Cómo equilibran estabilidad y novedad?","¿Qué experiencia nueva les gustaría vivir?","¿La rutina los acerca o los aleja?","¿Extrañan la espontaneidad del principio?","Nota al equilibrio rutina-aventura (1-10)","Planeen algo espontáneo juntos"] },
+  { n: 26, t: "Crianza y Familia", tema: "Familia futura", qs: ["¿Están de acuerdo en el tema de los hijos?","¿Cómo se ven como familia en 10 años?","¿La crianza ha afectado su relación de pareja?","¿Priorizan su relación sobre la de padres?","¿Cómo manejan los desacuerdos sobre crianza?","¿Qué tipo de padres quieren ser?","¿Qué de su crianza quieren replicar?","¿Hay presiones familiares que los afectan?","Nota a la visión familiar (1-10)","Alineen una decisión familiar pendiente"] },
+  { n: 27, t: "Admiración y Respeto", tema: "Respeto", qs: ["¿Admiras a tu pareja? ¿En qué?","¿Te sientes respetado/a?","¿Alguna vez has dicho algo irrespetuoso?","¿Cómo demuestras respeto en el día a día?","¿Tu pareja te habla con respeto siempre?","¿Hay situaciones donde falta el respeto?","¿Qué es lo que más admiras de tu pareja?","¿El respeto ha cambiado con el tiempo?","Nota al respeto mutuo (1-10)","Dile a tu pareja qué admiras de ella/él"] },
+  { n: 28, t: "Renovar la Promesa", tema: "Compromiso", qs: ["¿Tu compromiso con la relación es sólido?","¿Has dudado alguna vez de la relación?","¿Qué te mantiene en esta relación?","¿Te sientes elegido/a cada día?","¿Cómo renovarían su compromiso?","¿Qué significa el compromiso para ti?","¿Temes el futuro de la relación?","¿Qué le prometerías a tu pareja hoy?","Nota al compromiso (1-10)","Escribe una nueva promesa"] },
+  { n: 29, t: "Lo que Cambió en 30 Días", tema: "Autoevaluación", qs: ["¿Qué aprendiste de ti en estos 30 días?","¿Qué aprendiste de tu pareja?","¿Qué ha mejorado en su comunicación?","¿Qué tema fue el más difícil?","¿Qué pregunta te impactó más?","¿Han cambiado las cosas desde el día 1?","¿Qué quieres seguir trabajando?","¿Recomendarías este programa?","Nota a la evolución (1-10)","3 cambios que implementarán"] },
+  { n: 30, t: "Celebrar el Camino", tema: "Celebración", qs: ["¿Cómo te sientes al completar los 30 días?","¿Cuál fue el día más significativo?","¿Qué aprendizaje te cambió la perspectiva?","¿Tu nivel de conexión mejoró?","¿Qué fue lo más difícil de este proceso?","¿Qué fue lo más bonito?","¿Cómo van a celebrar este logro juntos?","Mensaje de agradecimiento a tu pareja","Nota final de conexión (1-10)","Su compromiso más importante como pareja"] }
+];
+
+const tipos = ['reflexion','reflexion','reflexion','reflexion','compartida','compartida','profunda','profunda','evaluacion','compromiso'];
+const tipoLabels = { reflexion:'🪞 Reflexión', compartida:'💕 Compartida', profunda:'🌊 Profunda', evaluacion:'📊 Evaluación', compromiso:'🤝 Compromiso' };
+
+const container = document.body;
+days.forEach(day => {
+  const page = document.createElement('div');
+  page.className = 'page';
+  let html = `<div class="day-header"><div class="day-number">Día ${day.n} de 30 — ${day.tema}</div><h2>${day.t}</h2></div>`;
+  day.qs.forEach((q, i) => {
+    const tipo = tipos[i];
+    html += `<div class="question"><span class="question-num">${i+1}</span><span class="question-type">${tipoLabels[tipo]}</span><p>${q}</p><div class="answer-space"></div></div>`;
+  });
+  html += `<div class="score-section"><h3>📊 Nivel de conexión hoy</h3><div class="score-circles">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<div class="score-circle">${n}</div>`).join('')}</div></div>`;
+  html += `<div class="reflection-box"><h3>🧠 Reflexión del Día ${day.n}</h3><div class="reflection-field"><label>¿Cómo me sentí hoy?</label><div class="space"></div></div><div class="reflection-field"><label>¿Qué aprendí de mi pareja?</label><div class="space"></div></div><div class="reflection-field"><label>¿Qué quiero mejorar?</label><div class="space"></div></div></div>`;
+  html += `<div class="footer">30 Días Para Reconectar — Día ${day.n} de 30 💕</div>`;
+  page.innerHTML = html;
+  container.appendChild(page);
+});
+</script>
+
+</body>
+</html>

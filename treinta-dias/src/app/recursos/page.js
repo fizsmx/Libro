@@ -28,6 +28,7 @@ export default function RecursosPage() {
       size: '~5 MB',
       available: hasAccess,
       color: 'var(--color-primary)',
+      downloadUrl: '/recursos/cuadernillo.html',
     },
     {
       icon: '📖',
@@ -37,6 +38,7 @@ export default function RecursosPage() {
       size: '~3 MB',
       available: hasAccess,
       color: 'var(--color-secondary-light)',
+      downloadUrl: '/recursos/guia_conversaciones.html',
     },
     {
       icon: '🎧',
@@ -205,10 +207,19 @@ export default function RecursosPage() {
                       <span style={{ fontSize: '0.85rem', color: 'var(--color-success)', fontWeight: 600 }}>
                         ✅ Disponible — usa el botón 🤖 en la esquina inferior derecha
                       </span>
+                    ) : recurso.available && recurso.downloadUrl ? (
+                      <a
+                        href={recurso.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-secondary btn-sm"
+                      >
+                        📥 Abrir / Imprimir como PDF
+                      </a>
                     ) : recurso.available ? (
-                      <button className="btn btn-secondary btn-sm" disabled>
-                        📥 Próximamente
-                      </button>
+                      <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
+                        🎧 Próximamente — contenido en preparación
+                      </span>
                     ) : (
                       <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
                         🔒 Requiere acceso completo
