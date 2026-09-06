@@ -1,0 +1,576 @@
+{
+  "titulo": "30 Días Para Reconectar",
+  "descripcion": "Un programa de 30 días diseñado para que tú y tu pareja trabajen juntos en fortalecer su conexión emocional a través de conversaciones guiadas, reflexiones y ejercicios prácticos.",
+  "dias": [
+    {
+      "numero": 1,
+      "titulo": "Reconectando con el Inicio",
+      "tema": "Historia de la relación",
+      "descripcion": "Hoy recordaremos juntos cómo empezó todo. Reconectar con los orígenes de su relación les ayudará a redescubrir lo que los unió.",
+      "gratuito": true,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuál es tu primer recuerdo de cuando nos conocimos? Describe con detalle qué sentiste en ese momento.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué fue lo primero que te atrajo de mí? ¿Sigue siendo importante para ti?", "tipo": "reflexion"},
+        {"index": 2, "texto": "Describe un momento de nuestros primeros meses juntos que todavía te haga sonreír.", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Cuándo supiste que querías estar conmigo en una relación seria? ¿Qué te hizo sentir eso?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Hay algo que hacíamos al principio de la relación que extrañas? ¿Qué era y por qué crees que dejamos de hacerlo?", "tipo": "compartida"},
+        {"index": 5, "texto": "Si pudieras revivir un solo día de nuestra relación, ¿cuál sería y por qué?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Qué expectativas tenías sobre nuestra relación cuando comenzamos? ¿Se han cumplido?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Cuál ha sido el momento más feliz que hemos vivido juntos hasta ahora?", "tipo": "profunda"},
+        {"index": 8, "texto": "En una escala del 1 al 10, ¿qué tan conectado/a te sientes conmigo en este momento? Sin juzgar, solo honestidad.", "tipo": "evaluacion"},
+        {"index": 9, "texto": "¿Qué esperas lograr en estos 30 días juntos? Escribe tu intención principal para este programa.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "El Lenguaje del Amor",
+      "tema": "Lenguajes del amor",
+      "descripcion": "Cada persona expresa y recibe amor de forma diferente. Hoy exploraremos cómo cada uno de ustedes se siente más amado.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "De las siguientes formas de recibir amor, ¿cuál es la más importante para ti? Palabras de afirmación, actos de servicio, regalos, tiempo de calidad o contacto físico. Explica por qué.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿De qué forma sueles expresar amor hacia tu pareja? ¿Crees que es la forma en que a él/ella le gusta recibirlo?", "tipo": "reflexion"},
+        {"index": 2, "texto": "Describe un momento reciente en el que te sentiste verdaderamente amado/a por tu pareja. ¿Qué hizo exactamente?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay alguna forma de amor que necesitas pero que no estás recibiendo actualmente? Descríbela sin culpar.", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué pequeño gesto cotidiano de tu pareja te hace sentir especial?", "tipo": "compartida"},
+        {"index": 5, "texto": "Si tu pareja pudiera hacer una sola cosa cada día para que te sintieras más amado/a, ¿cuál sería?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez has sentido que das más amor del que recibes? ¿Cómo te hace sentir eso?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Cómo aprendiste a expresar amor en tu familia de origen? ¿En qué se diferencia de cómo lo expresas ahora?", "tipo": "profunda"},
+        {"index": 8, "texto": "¿Qué nota le pondrías a la forma en que tu pareja te demuestra amor actualmente? (1-10)", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escribe un compromiso: esta semana haré algo específico para hablar el lenguaje de amor de mi pareja. ¿Qué harás?", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Escuchar para Entender",
+      "tema": "Comunicación activa",
+      "descripcion": "La mayoría de los conflictos no surgen por lo que decimos, sino porque no nos sentimos escuchados. Hoy practicaremos la escucha activa.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Te sientes escuchado/a cuando hablas con tu pareja sobre temas importantes? ¿Qué te hace sentir que sí o que no?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuándo fue la última vez que sentiste que tu pareja realmente entendió lo que querías decir, no solo las palabras?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Qué haces tú cuando tu pareja te está hablando? ¿Escuchas para responder o para entender?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay un tema del que has querido hablar pero sientes que tu pareja no está disponible para escuchar?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Piensa en tu última discusión: ¿qué crees que tu pareja estaba tratando de decirte realmente, detrás de las palabras?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cuál es tu mayor obstáculo para escuchar sin interrumpir? ¿Es la impaciencia, la necesidad de defender tu punto, o algo más?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Te resulta más fácil hablar de tus sentimientos o guardarlos? ¿Por qué crees que es así?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Hay algo que te gustaría que tu pareja supiera pero que nunca has podido expresar bien?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan buena es la comunicación en nuestra relación en este momento?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Hoy, practica esto: cuando tu pareja hable, repite con tus palabras lo que entendiste antes de responder. Escribe cómo fue la experiencia.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Las Heridas que Cargamos",
+      "tema": "Heridas emocionales",
+      "descripcion": "Todos llegamos a la relación con experiencias del pasado que influyen en cómo amamos y reaccionamos. Hoy exploraremos esas heridas con compasión.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuál es la herida emocional más profunda que traes de tu infancia o relaciones anteriores?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Crees que esa herida afecta la forma en que te relacionas con tu pareja actualmente? ¿De qué manera?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Qué situación en nuestra relación tiende a activar tu dolor más profundo?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Alguna vez has reaccionado de forma desproporcionada en nuestra relación por algo que no tenía que ver realmente con nosotros?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué necesitas de tu pareja cuando estás pasando por un momento emocionalmente difícil?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Hay algo que tu pareja hace, sin darse cuenta, que te lastima? Descríbelo con amor, no con reproche.", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Qué aprendiste sobre el amor viendo la relación de tus padres? ¿Qué quieres repetir y qué quieres cambiar?", "tipo": "profunda"},
+        {"index": 7, "texto": "Si pudieras sanar una sola herida emocional hoy, ¿cuál sería?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan seguro/a te sientes emocionalmente en esta relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso de hoy: escribe una carta breve (3-5 líneas) a tu pareja agradeciéndole por estar presente mientras exploras estas heridas.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 5,
+      "titulo": "Expectativas vs. Realidad",
+      "tema": "Expectativas en la relación",
+      "descripcion": "Las expectativas no expresadas son el origen de muchas decepciones. Hoy las pondremos sobre la mesa.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Qué expectativas tenías sobre cómo sería tu relación ideal antes de estar conmigo?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuáles de esas expectativas se han cumplido y cuáles no? ¿Cómo te hace sentir eso?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Hay expectativas que nunca le has comunicado a tu pareja pero que esperas que cumpla?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Crees que tu pareja sabe exactamente qué esperas de él/ella? ¿Le has dicho con claridad?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué expectativa de tu pareja sientes que te cuesta más cumplir? ¿Por qué?", "tipo": "compartida"},
+        {"index": 5, "texto": "Si pudieras pedirle a tu pareja que cambiara una sola cosa, ¿qué sería? ¿Y qué estarías dispuesto/a a cambiar tú a cambio?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿En qué momento dejaste de esperar la perfección de tu pareja y empezaste a aceptarla como es? ¿O todavía no lo has hecho?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué es más importante para ti: que tu pareja cumpla tus expectativas o que ambos creen nuevas expectativas juntos?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien manejan las expectativas en esta relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escribe 3 expectativas claras y razonables que te gustaría compartir con tu pareja hoy.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 6,
+      "titulo": "El Conflicto como Oportunidad",
+      "tema": "Gestión de conflictos",
+      "descripcion": "Los conflictos no son el enemigo de la relación; la forma en que los manejamos sí puede serlo. Hoy aprenderemos a pelear mejor.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuál es tu reacción automática cuando surge un conflicto? ¿Atacas, te cierras, huyes o te quedas a resolver?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuál fue el conflicto más difícil que hemos enfrentado como pareja? ¿Cómo lo resolvimos (o no)?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Hay un tema recurrente en nuestras peleas? ¿Cuál crees que es la raíz real de ese conflicto?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Alguna vez has dicho algo en una pelea de lo que te arrepientes profundamente? ¿Qué fue?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué regla o acuerdo te gustaría establecer para cuando tengamos conflictos? Por ejemplo: no levantar la voz, no irse sin avisar, etc.", "tipo": "compartida"},
+        {"index": 5, "texto": "Cuando estamos en conflicto, ¿qué es lo que más necesitas de mí? ¿Espacio, un abrazo, que te escuche, que me disculpe?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Crees que podemos estar en desacuerdo y aun así sentirnos conectados? ¿Cómo sería eso para ti?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué conflicto no resuelto entre nosotros sientes que todavía te pesa? Descríbelo sin buscar culpables.", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien manejamos los conflictos actualmente?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: elige una palabra clave que ambos usarán cuando una discusión se esté saliendo de control para hacer una pausa (por ejemplo: 'tiempo', 'respiro', 'pausa'). Escríbela aquí.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 7,
+      "titulo": "Confianza: La Base de Todo",
+      "tema": "Confianza",
+      "descripcion": "Sin confianza no hay intimidad real. Hoy evaluaremos honestamente el estado de la confianza en nuestra relación.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "Del 1 al 10, ¿cuánto confías en tu pareja en este momento? Sé honesto/a, sin miedo.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Hubo algún momento en nuestra relación en que la confianza se rompió o se dañó? ¿Qué pasó?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Qué necesitas para sentir que puedes confiar plenamente en tu pareja?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay algo que ocultas a tu pareja por miedo a su reacción? Sin necesidad de revelar qué es, ¿por qué crees que lo ocultas?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué acción concreta de tu pareja te haría sentir más confianza hoy?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Crees que la transparencia total es posible y deseable en una relación? ¿O hay cosas que es mejor no compartir?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿En qué área de la relación sientes que la confianza es más fuerte? ¿Y en cuál es más frágil?", "tipo": "profunda"},
+        {"index": 7, "texto": "Si la confianza se rompe, ¿crees que se puede reconstruir completamente? ¿Qué se necesitaría?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan transparente eres con tu pareja sobre tus pensamientos y sentimientos?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: comparte algo con tu pareja hoy que normalmente no compartirías. Puede ser pequeño pero honesto.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 8,
+      "titulo": "Intimidad Emocional",
+      "tema": "Conexión emocional profunda",
+      "descripcion": "La intimidad emocional es sentirse seguro para ser vulnerable. Hoy profundizaremos en esa conexión.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Qué significa para ti la intimidad emocional? ¿Es diferente de la intimidad física?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuándo fue la última vez que te sentiste emocionalmente desnudo/a frente a tu pareja? ¿Cómo fue esa experiencia?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Hay partes de ti que escondes de tu pareja por vergüenza o miedo al rechazo?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Qué tan cómodo/a te sientes llorando o mostrando debilidad frente a tu pareja?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué actividad o momento del día les genera más conexión emocional como pareja?", "tipo": "compartida"},
+        {"index": 5, "texto": "Completa esta frase: 'Me siento más cerca de ti cuando...'", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez te has sentido solo/a estando al lado de tu pareja? ¿Qué crees que faltaba en ese momento?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué es lo que más miedo te da que tu pareja descubra de ti?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan profunda es tu conexión emocional con tu pareja actualmente?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Hoy, mira a tu pareja a los ojos durante 2 minutos en silencio. Después escribe qué sentiste.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 9,
+      "titulo": "Gratitud y Reconocimiento",
+      "tema": "Apreciación mutua",
+      "descripcion": "Es fácil dar por sentado a quien tenemos al lado. Hoy nos enfocaremos en reconocer y agradecer.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "Escribe 5 cosas que tu pareja hace por ti que normalmente no reconoces o agradeces.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuándo fue la última vez que le dijiste a tu pareja específicamente por qué la admiras?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te sientes reconocido/a y valorado/a en esta relación? ¿Qué te falta?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Qué sacrificio de tu pareja es el que más valoras, aunque quizás nunca se lo hayas dicho?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Completa: 'Lo que más admiro de ti es...' (escribe al menos 3 cosas)", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Preferirías que tu pareja te agradeciera más con palabras, con gestos, o con actos? ¿Por qué?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez has sentido que das más de lo que recibes en esta relación? ¿Cómo manejas ese sentimiento?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué parte de ti mismo/a ha crecido o mejorado gracias a esta relación?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan agradecido/a te sientes por esta relación hoy?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escribe una nota de agradecimiento breve a tu pareja (5 líneas). Compártela cuando ambos hayan terminado.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 10,
+      "titulo": "Miedos y Vulnerabilidades",
+      "tema": "Vulnerabilidad compartida",
+      "descripcion": "Ser vulnerable no es debilidad, es valentía. Hoy compartiremos nuestros miedos más profundos sobre la relación.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuál es tu mayor miedo sobre esta relación? Sé completamente honesto/a.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué es lo peor que podría pasar en nuestra relación? ¿Cómo te prepararías emocionalmente?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te da miedo la posibilidad de perder a tu pareja? ¿Cómo influye ese miedo en tu comportamiento?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay algún miedo tuyo que nunca le has contado a tu pareja? ¿Por qué lo guardas?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué necesitas de tu pareja cuando te sientes vulnerable o asustado/a?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cómo reaccionas cuando tu pareja se muestra vulnerable? ¿Le das espacio seguro?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Cuál es la cosa más difícil que has tenido que aceptar sobre ti mismo/a en el contexto de esta relación?", "tipo": "profunda"},
+        {"index": 7, "texto": "Si pudieras eliminar un miedo relacionado con el amor, ¿cuál sería?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan seguro/a te sientes para ser completamente tú mismo/a en esta relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compartir un miedo: hoy, comparte con tu pareja un miedo que nunca le hayas dicho. Escribe aquí cuál elegiste y cómo fue la experiencia.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 11,
+      "titulo": "Roles y Responsabilidades",
+      "tema": "Distribución de roles",
+      "descripcion": "¿Quién hace qué en la relación? Hoy revisaremos si la distribución de roles es justa y funcional.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Sientes que la distribución de tareas y responsabilidades en nuestra relación es justa? ¿Por qué sí o por qué no?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué responsabilidad del hogar o la relación te gustaría que tu pareja asumiera más?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Hay roles que asumiste en la relación que no elegiste conscientemente? ¿Cuáles?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Cómo era la distribución de roles en tu familia de origen? ¿Estás replicando ese modelo?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Si pudieras rediseñar la distribución de tareas desde cero, ¿cómo la organizarías?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Qué tarea o responsabilidad realizas que crees que tu pareja no nota o no valora?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Cómo te sientes cuando la carga emocional de la relación recae más sobre ti?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Hay algún rol de género que sientas que te limita en esta relación?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan equilibrada sientes la distribución de responsabilidades?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Hoy, haz una tarea que normalmente hace tu pareja sin que te lo pida. Escribe qué hiciste y cómo se sintió.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 12,
+      "titulo": "Dinero y Finanzas",
+      "tema": "Finanzas en pareja",
+      "descripcion": "El dinero es uno de los temas más conflictivos en las relaciones. Hoy hablaremos de ello con apertura.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cómo te sientes respecto al manejo del dinero en nuestra relación? ¿Es un tema cómodo o tenso?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuál fue tu experiencia con el dinero en tu familia? ¿Había abundancia, escasez, o conflicto?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Hay algún gasto de tu pareja que te moleste pero que nunca has mencionado?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Te sientes libre para gastar sin pedir permiso, o sientes que debes consultar todo?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Cuál es tu sueño o meta financiera más importante para los próximos 5 años como pareja?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Prefieren manejar cuentas conjuntas, separadas, o mixtas? ¿Por qué?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez el dinero ha sido motivo de pelea seria entre ustedes? ¿Qué aprendieron de eso?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Te sientes seguro/a financieramente en esta relación? ¿Qué te haría sentir más seguro/a?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien manejan las finanzas como pareja?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: establezcan juntos un mini presupuesto para una 'cita especial' este mes. Escribe cuánto y para qué.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 13,
+      "titulo": "Intimidad Física",
+      "tema": "Conexión física y sensualidad",
+      "descripcion": "La intimidad física va más allá del sexo. Hoy exploraremos el contacto, la cercanía y la conexión corporal.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Te sientes satisfecho/a con la intimidad física en nuestra relación? ¿Qué extrañas o qué te gustaría diferente?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué tipo de contacto físico (no sexual) te hace sentir más conectado/a? ¿Un abrazo, tomarse de la mano, un beso en la frente?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te sientes cómodo/a iniciando el contacto físico con tu pareja? ¿O esperas que él/ella lo inicie?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay algo sobre tu cuerpo o tu imagen que te genera inseguridad y que afecta tu intimidad?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Con qué frecuencia te gustaría tener momentos de cercanía física (abrazos, caricias, besos)?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Qué momento del día sería ideal para tener un rato de conexión física sin distracciones?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez has rechazado o evitado el contacto físico de tu pareja? ¿Qué había detrás de ese rechazo?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Cómo te sentirías si tu pareja te abrazara durante 60 segundos cada día sin motivo? ¿Cambiaría algo?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan satisfecho/a estás con la cercanía física en la relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Hoy, abrácense por al menos 30 segundos sin hablar. Solo sientan. Escribe cómo fue.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 14,
+      "titulo": "Familia y Entorno",
+      "tema": "Familia extendida y límites",
+      "descripcion": "Las familias pueden unir o dividir a una pareja. Hoy hablaremos de límites saludables con el entorno.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cómo es tu relación con la familia de tu pareja? ¿Te sientes aceptado/a?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Hay algún miembro de tu familia que interfiera negativamente en nuestra relación?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te sientes priorizado/a por tu pareja cuando hay un conflicto entre tú y su familia?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Qué límites te gustaría establecer con la familia extendida para proteger nuestra relación?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Cómo manejan las opiniones o consejos no solicitados de familiares sobre su relación?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Hay tradiciones familiares que son importantes para ti y que te gustaría que respetáramos juntos?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez has sentido que tu pareja elige a su familia por encima de ti? ¿Cómo te hizo sentir?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué tipo de familia quieres construir con tu pareja? ¿En qué se parecería o diferenciaría de tu familia de origen?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien manejan la relación con las familias de ambos?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: acuerden una regla sobre cómo manejarán las opiniones familiares sobre su relación. Escríbanla aquí.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 15,
+      "titulo": "Punto Medio: Revisión",
+      "tema": "Revisión de progreso",
+      "descripcion": "¡Llevan 15 días! Es momento de hacer una pausa y revisar cómo se sienten, qué han aprendido y hacia dónde quieren ir.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cómo te has sentido durante estos 15 días del programa? ¿Ha sido lo que esperabas?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuál ha sido la conversación o pregunta más reveladora hasta ahora? ¿Qué aprendiste?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Ha cambiado algo en la relación desde que empezaron este programa? ¿Qué?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay algún tema que evitaste responder con total honestidad? ¿Qué te detuvo?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué descubrimiento sobre tu pareja te ha sorprendido más en estos 15 días?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Sientes que tu pareja ha sido honesta y comprometida con el programa? ¿Qué te hace pensar eso?", "tipo": "compartida"},
+        {"index": 6, "texto": "Si compararas tu nivel de conexión emocional del Día 1 con el de hoy, ¿ha mejorado, empeorado o sigue igual?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué te gustaría que fuera diferente en los próximos 15 días?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿cuál es tu nivel de conexión con tu pareja hoy comparado con el Día 1?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Renueva tu compromiso: ¿por qué quieres seguir los próximos 15 días? Escríbelo como si fuera una promesa a tu pareja.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 16,
+      "titulo": "Perdón y Soltar",
+      "tema": "El arte de perdonar",
+      "descripcion": "Cargar resentimientos es como beber veneno esperando que el otro se enferme. Hoy trabajaremos en soltar.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Hay algo que tu pareja hizo en el pasado que todavía no has perdonado completamente?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué significa perdonar para ti? ¿Es olvidar, aceptar, o algo diferente?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te cuesta más pedir perdón o dar perdón? ¿Por qué crees que es así?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Hay algo que tú hayas hecho y que necesites pedir perdón a tu pareja?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Cómo te gustaría que tu pareja te pidiera perdón cuando te lastima? ¿Qué necesitas escuchar?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Alguna vez has dicho 'te perdono' sin realmente haberlo hecho? ¿Qué pasó después?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Qué resentimiento estás cargando que, si lo soltaras hoy, te haría sentir más libre?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Crees que es posible perdonar sin recibir una disculpa? ¿Cómo se vería eso?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan libre te sientes de resentimientos hacia tu pareja?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Si hay algo que perdonar, escríbelo aquí y comprométete a dejarlo ir. Si no puedes aún, escribe qué necesitarías para poder hacerlo.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 17,
+      "titulo": "Sueños y Metas Compartidas",
+      "tema": "Visión de futuro",
+      "descripcion": "Una pareja que sueña junta, crece junta. Hoy exploraremos su visión compartida del futuro.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cómo imaginas tu vida con tu pareja dentro de 5 años? Describe tu día ideal.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Hay un sueño personal que sientes que has postergado por la relación?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Conoces los 3 sueños más importantes de tu pareja? Intenta escribirlos sin preguntarle.", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Sientes que tus metas individuales y las de la pareja están alineadas? ¿Dónde chocan?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Si el dinero no fuera un problema, ¿qué les gustaría hacer juntos como pareja?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Qué meta como pareja les gustaría lograr antes de que termine este año?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Te sientes apoyado/a por tu pareja en tus metas personales? ¿Qué más necesitarías?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué legado quieres dejar como pareja? ¿Cómo quieres que los recuerden juntos?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan alineados están como pareja en su visión de futuro?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Juntos, escriban un 'manifiesto de pareja': 3 cosas que quieren lograr juntos en los próximos 12 meses.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 18,
+      "titulo": "Espacio Personal",
+      "tema": "Individualidad dentro de la pareja",
+      "descripcion": "Amar no es fusionarse. Hoy hablaremos de la importancia de mantener la individualidad.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Sientes que tienes suficiente espacio personal dentro de la relación? ¿O te sientes asfixiado/a a veces?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué actividad disfrutas hacer solo/a que te recarga de energía?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Cómo te sientes cuando tu pareja quiere tiempo a solas? ¿Lo respetas o lo tomas como rechazo?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Has dejado de hacer algo que amabas para complacer a tu pareja? ¿Qué fue?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Cuánto tiempo a solas necesitas por semana para sentirte bien? Sé específico/a.", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cómo pueden respetar el espacio individual del otro sin que se sienta como distancia emocional?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez has sentido que perdiste parte de tu identidad en esta relación? ¿Qué parte?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué parte de tu individualidad es innegociable y tu pareja debe respetar siempre?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien equilibran el tiempo juntos y el espacio personal?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Esta semana, cada uno haga algo solo/a que disfrute. Escribe qué vas a hacer y por qué es importante para ti.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 19,
+      "titulo": "Celos y Seguridad",
+      "tema": "Celos e inseguridades",
+      "descripcion": "Los celos son naturales pero pueden destruir una relación si no se manejan. Hoy los abordaremos con madurez.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Te consideras una persona celosa? ¿Qué situaciones despiertan tus celos?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuál es la diferencia entre celos sanos y celos tóxicos para ti?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Alguna vez tus celos han causado un problema serio en la relación? ¿Qué pasó?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Crees que detrás de los celos hay una inseguridad más profunda? ¿Cuál podría ser?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué puede hacer tu pareja para que te sientas más seguro/a cuando sientes celos?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cómo te gustaría que tu pareja manejara las amistades con personas del sexo opuesto?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Tus celos vienen de experiencias pasadas (infidelidad, abandono) o de inseguridades propias?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué necesitarías para nunca más sentir celos en esta relación? ¿Es posible?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan seguro/a te sientes sobre la fidelidad en tu relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: la próxima vez que sientas celos, antes de reaccionar, escribe aquí qué sentiste y qué lo provocó. Reflexiona antes de actuar.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 20,
+      "titulo": "Comunicación No Verbal",
+      "tema": "Lo que no se dice con palabras",
+      "descripcion": "El 70% de la comunicación es no verbal. Hoy prestaremos atención a lo que decimos sin hablar.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Qué gestos o expresiones de tu pareja puedes leer fácilmente? ¿Sabes cuándo está triste, molesta o feliz sin que lo diga?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cómo es tu lenguaje corporal cuando estás enojado/a? ¿Te cierras, cruzas los brazos, evitas la mirada?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Tu pareja sabe leer tus señales no verbales? ¿O a menudo malinterpreta cómo te sientes?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Alguna vez has dicho 'estoy bien' cuando claramente no lo estabas? ¿Por qué lo hiciste?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué gesto no verbal de tu pareja te hace sentir más amado/a? (un abrazo, una mirada, una sonrisa)", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Hay un gesto tuyo que tu pareja malinterpreta frecuentemente? Explícale qué significa realmente.", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Qué dice tu cuerpo sobre el estado de tu relación ahora mismo? ¿Estás tenso/a, relajado/a, cerrado/a, abierto/a?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Cuándo fue la última vez que una mirada entre ustedes dijo más que mil palabras? Describe ese momento.", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien se entienden sin palabras?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Hoy, comuniquen algo importante solo con gestos y contacto físico, sin palabras. Escriban después cómo fue.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 21,
+      "titulo": "Diversión y Juego",
+      "tema": "El juego en la relación",
+      "descripcion": "Las parejas que ríen juntas permanecen juntas. Hoy recordaremos la importancia de divertirse.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuándo fue la última vez que rieron juntos hasta no poder parar? ¿Qué pasó?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Sienten que su relación se ha vuelto demasiado seria o rutinaria? ¿Cuándo cambió?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Qué actividad les encantaba hacer juntos al principio que ya no hacen?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Te sientes libre de ser tonto/a y juguetón/a con tu pareja, o sientes que debes ser siempre 'adulto'?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Si pudieran tener una cita perfecta este fin de semana, ¿cómo sería?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Qué nueva actividad les gustaría probar juntos que nunca han hecho?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Crees que han dejado que las responsabilidades maten la diversión en la relación? ¿Cómo lo recuperarían?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué es lo más aventurero o loco que harías con tu pareja si no tuvieras miedo ni limitaciones?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿cuánta diversión y juego hay actualmente en su relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: planifiquen una actividad divertida juntos para esta semana. Escribe qué van a hacer.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 22,
+      "titulo": "Valores Fundamentales",
+      "tema": "Valores compartidos",
+      "descripcion": "Los valores son la brújula de la relación. Hoy descubriremos si están apuntando en la misma dirección.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuáles son tus 5 valores más importantes en la vida? (Ejemplo: honestidad, familia, libertad, lealtad, crecimiento)", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Crees que compartes los mismos valores fundamentales con tu pareja? ¿En qué difieren?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Hay algún valor de tu pareja que admires profundamente, aunque sea diferente al tuyo?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Alguna vez un conflicto de valores ha causado una crisis en la relación? ¿Cómo lo manejaron?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Si tuvieran que elegir solo 3 valores como pareja que guíen todas sus decisiones, ¿cuáles serían?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Hay un tema donde sus valores chocan fuertemente? (Ejemplo: religión, crianza, dinero, política) ¿Cómo lo navegan?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Qué valor personal sientes que has comprometido por mantener la paz en la relación?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué valor es absolutamente innegociable para ti? ¿Tu pareja lo sabe?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan alineados están en sus valores fundamentales?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escriban juntos una 'declaración de valores' como pareja (3-5 valores que los definen juntos).", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 23,
+      "titulo": "Estrés y Apoyo Mutuo",
+      "tema": "Manejo del estrés en pareja",
+      "descripcion": "El estrés externo puede erosionar la relación desde adentro. Hoy hablaremos de cómo apoyarnos mutuamente.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuál es tu mayor fuente de estrés actualmente? ¿Cómo afecta tu relación?", "tipo": "reflexion"},
+        {"index": 1, "texto": "Cuando estás estresado/a, ¿cómo reaccionas con tu pareja? ¿Te alejas, te vuelves irritable, buscas apoyo?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te sientes apoyado/a por tu pareja cuando pasas por momentos difíciles? ¿Qué más necesitarías?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Alguna vez has descargado tu estrés del trabajo o de otras áreas en tu pareja? ¿Cómo lo manejas?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué puedo hacer cuando te veo estresado/a que realmente te ayude? Sé específico/a.", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cómo pueden proteger su relación del estrés externo (trabajo, finanzas, familia)?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Hay algún momento en que sentiste que tu pareja no estuvo para ti cuando más la necesitabas? ¿Qué pasó?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Cómo les gustaría manejar juntos la próxima crisis o situación estresante que enfrenten?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien se apoyan mutuamente en momentos de estrés?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Hoy, pregúntale a tu pareja: '¿Cómo estuvo tu día, de verdad?' y escucha sin juzgar ni dar soluciones. Escribe cómo fue.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 24,
+      "titulo": "Tecnología y Presencia",
+      "tema": "Desconexión digital, conexión real",
+      "descripcion": "¿Cuántas veces el celular ha estado entre ustedes? Hoy hablaremos de la presencia real en la era digital.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Sientes que la tecnología (celulares, redes sociales) interfiere en la calidad de tiempo con tu pareja?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuántas horas al día pasas en tu teléfono que podrías estar dedicando a tu relación?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Te molesta cuando tu pareja está en el celular mientras están juntos? ¿Le has dicho?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Las redes sociales han causado algún conflicto en su relación? ¿Qué pasó?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué regla sobre el uso de tecnología les ayudaría a estar más presentes el uno con el otro?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Podrían tener una 'hora libre de pantallas' cada día dedicada solo a estar juntos? ¿Cuándo sería?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Alguna vez has comparado tu relación con las de redes sociales y te has sentido mal? ¿Qué aprendiste?", "tipo": "profunda"},
+        {"index": 7, "texto": "Si quitaran toda tecnología por un fin de semana, ¿qué harían juntos?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan presentes están el uno para el otro sin distracciones digitales?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Reto: hoy, dejen los celulares lejos durante la cena y conversen mirándose a los ojos. Escribe cómo fue.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 25,
+      "titulo": "Crianza y Futuro",
+      "tema": "Hijos y crianza",
+      "descripcion": "Tengan hijos o no, la conversación sobre crianza y legado es fundamental para la alineación como pareja.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Quieren tener hijos (o más hijos)? ¿Están ambos de acuerdo? ¿Han hablado con sinceridad sobre esto?", "tipo": "reflexion"},
+        {"index": 1, "texto": "Si ya tienen hijos: ¿cómo ha cambiado su relación desde que llegaron? ¿Qué extrañan de antes?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Cuáles son los 3 valores más importantes que quieren transmitir a sus hijos (actuales o futuros)?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Están de acuerdo en el estilo de crianza? ¿Dónde difieren?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Cómo dividen (o dividirían) las responsabilidades de crianza?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Los hijos (o la decisión de no tenerlos) ha sido fuente de conflicto entre ustedes?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Qué tipo de padre/madre quieres ser? ¿En qué te diferencias del modelo de tus propios padres?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Cómo pueden mantener viva la relación de pareja mientras son padres? ¿O mientras planifican su futuro familiar?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan alineados están en el tema de hijos/crianza?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escriban juntos su visión de familia para los próximos 5 años. Sea cual sea su decisión sobre hijos, ¿cómo se ven?", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 26,
+      "titulo": "Salud y Bienestar Juntos",
+      "tema": "Salud física y mental como pareja",
+      "descripcion": "Cuidarse a uno mismo es cuidar la relación. Hoy hablaremos de salud física y mental como equipo.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cómo está tu salud mental en este momento? ¿Tu pareja lo sabe?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Se motivan mutuamente a cuidar su salud física? ¿O es un tema individual?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Alguna vez un problema de salud (físico o mental) ha afectado tu relación? ¿Cómo lo manejaron?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Te sientes cómodo/a hablando de salud mental con tu pareja sin sentirte juzgado/a?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué hábito saludable les gustaría incorporar juntos? (Ejercicio, alimentación, meditación, sueño)", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cómo pueden apoyarse mutuamente si uno de los dos está pasando por una crisis de salud mental?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Hay algo sobre tu salud que te preocupa y que no le has compartido a tu pareja?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Considerarían ir a terapia de pareja profesional si lo necesitaran? ¿Qué los detendría?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien se cuidan como pareja en términos de salud integral?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Compromiso: esta semana, hagan una actividad física juntos (caminata, yoga, baile). Escribe cuál elegirán.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 27,
+      "titulo": "Rituales de Conexión",
+      "tema": "Crear rituales de pareja",
+      "descripcion": "Los rituales son anclas emocionales que mantienen la relación estable. Hoy crearemos los suyos.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Tienen algún ritual como pareja? (Por ejemplo: café juntos, despedirse con un beso, cita semanal) ¿Cuáles son?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Qué ritual de conexión les gustaría tener que aún no practican?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Cómo se despiden por la mañana? ¿Y cómo se reciben cuando se reencuentran? ¿Hay cariño en esos momentos?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Tienen un ritual para antes de dormir? ¿Hablan, se abrazan, revisan el celular cada uno por su lado?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Si pudieran crear un 'ritual sagrado' semanal solo para ustedes, ¿qué incluiría?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Qué fecha especial de su relación les gustaría celebrar cada año como un ritual?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Creen que la falta de rituales ha contribuido a la rutina o desconexión en su relación?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué ritual de tus padres o abuelos te gustaría replicar en tu relación?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan rica es su relación en rituales de conexión?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Creen 3 rituales nuevos que se comprometen a practicar: uno diario (2 minutos), uno semanal (30 minutos) y uno mensual (medio día).", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 28,
+      "titulo": "Amor Propio y Relación",
+      "tema": "Autoestima y amor propio",
+      "descripcion": "No puedes amar plenamente a otro si no te amas a ti mismo/a. Hoy exploraremos cómo se cuidan a sí mismos.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "Del 1 al 10, ¿cuánto te amas a ti mismo/a en este momento? ¿Por qué esa puntuación?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cómo afecta tu nivel de autoestima a la forma en que te comportas en la relación?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Alguna vez has buscado en tu pareja la validación que deberías darte a ti mismo/a?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Qué es lo que más te gusta de ti? ¿Y qué es lo que más te cuesta aceptar?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Cómo puede tu pareja ayudarte a sentirte mejor contigo mismo/a sin que seas dependiente de su validación?", "tipo": "compartida"},
+        {"index": 5, "texto": "Dile a tu pareja 3 cosas que amas de ti mismo/a. ¿Te costó? ¿Por qué?", "tipo": "compartida"},
+        {"index": 6, "texto": "¿Tu relación te ha hecho quererte más o menos? ¿Qué crees que ha influido?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué hábito de autocuidado necesitas implementar para ser una mejor versión de ti y, por ende, una mejor pareja?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿qué tan bien se cuidan a sí mismos individualmente dentro de esta relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escríbete una carta de amor a ti mismo/a (5 líneas). Léela en voz alta si te atreves.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 29,
+      "titulo": "Construyendo el Futuro Juntos",
+      "tema": "Plan de acción",
+      "descripcion": "Estamos casi al final. Hoy convertiremos lo aprendido en un plan de acción concreto para el futuro de su relación.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cuáles son los 3 aprendizajes más valiosos de estos 29 días que quieres llevar contigo?", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿En qué área de la relación viste el mayor crecimiento durante este programa?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Qué cambio en ti mismo/a te ha sorprendido más?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Qué tema de los que tratamos necesita más trabajo aún?", "tipo": "reflexion"},
+        {"index": 4, "texto": "¿Qué acuerdo o regla nueva quieren implementar como pareja a partir de hoy?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Cómo se asegurarán de que lo aprendido en estos 30 días no se pierda con el tiempo?", "tipo": "compartida"},
+        {"index": 6, "texto": "Si pudieran viajar al futuro y verse como pareja en 10 años, ¿qué verían? ¿Es una imagen que les gusta?", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué le dirías a tu yo de hace 30 días, antes de empezar este programa?", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿cuál es tu nivel de esperanza y compromiso con el futuro de esta relación?", "tipo": "evaluacion"},
+        {"index": 9, "texto": "Escriban juntos su 'Pacto de Pareja': 5 compromisos concretos que harán desde mañana en adelante.", "tipo": "compromiso"}
+      ]
+    },
+    {
+      "numero": 30,
+      "titulo": "Celebración y Cierre",
+      "tema": "Cierre del programa",
+      "descripcion": "¡Lo lograron! 30 días de trabajo consciente en su relación. Hoy celebramos lo recorrido y sellamos su compromiso.",
+      "gratuito": false,
+      "preguntas": [
+        {"index": 0, "texto": "¿Cómo te sientes hoy, en el último día del programa? Compara con cómo te sentías el Día 1.", "tipo": "reflexion"},
+        {"index": 1, "texto": "¿Cuál fue el momento más difícil de estos 30 días? ¿Y el más hermoso?", "tipo": "reflexion"},
+        {"index": 2, "texto": "¿Qué descubriste sobre tu pareja que no sabías antes de empezar este programa?", "tipo": "reflexion"},
+        {"index": 3, "texto": "¿Qué descubriste sobre ti mismo/a?", "tipo": "reflexion"},
+        {"index": 4, "texto": "Si tuvieras que describir tu relación antes y después de estos 30 días, ¿cómo lo harías?", "tipo": "compartida"},
+        {"index": 5, "texto": "¿Qué pregunta de todo el programa te gustaría repetir o profundizar más? ¿Por qué?", "tipo": "compartida"},
+        {"index": 6, "texto": "Escribe una declaración de amor a tu pareja. No lo que sientes que 'deberías' decir, sino lo que realmente sientes ahora.", "tipo": "profunda"},
+        {"index": 7, "texto": "¿Qué le prometes a tu pareja a partir de hoy? Una promesa real, no perfecta.", "tipo": "profunda"},
+        {"index": 8, "texto": "Del 1 al 10, ¿cuál es tu nivel de conexión final con tu pareja? Compáralo con tu puntuación del Día 1.", "tipo": "evaluacion"},
+        {"index": 9, "texto": "🎉 Último compromiso: escriban una carta conjunta a su futuro yo. Ábrala en un año. ¿Qué les dirían?", "tipo": "compromiso"}
+      ]
+    }
+  ]
+}
