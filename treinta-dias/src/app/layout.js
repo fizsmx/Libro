@@ -1,5 +1,6 @@
 import './globals.css';
 import ChatBot from '@/components/ChatBot';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export const metadata = {
   title: '30 Días Para Reconectar — Programa de Terapia de Pareja',
@@ -18,6 +19,18 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <ChatBot />
+        <ThemeToggle />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/sw.js').catch(() => {});
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

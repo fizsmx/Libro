@@ -13,22 +13,24 @@ export default function AdminPage() {
   const [newCodesCount, setNewCodesCount] = useState(5);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [toast, setToast] = useState(null);
+  const [stats, setStats] = useState({});
 
   useEffect(() => {
     const adminAuth = localStorage.getItem('admin_auth');
     if (adminAuth === 'true') {
       setIsAdmin(true);
       loadCodes();
+      loadStats();
     }
   }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Default admin password — change this!
     if (password === 'admin30dias') {
       setIsAdmin(true);
       localStorage.setItem('admin_auth', 'true');
       loadCodes();
+      loadStats();
     } else {
       setError('Contraseña incorrecta');
     }
@@ -36,9 +38,40 @@ export default function AdminPage() {
 
   const loadCodes = () => {
     const savedCodes = localStorage.getItem('admin_codes');
-    if (savedCodes) {
-      setCodes(JSON.parse(savedCodes));
+    if (savedCodes) setCodes(JSON.parse(savedCodes));
+  };
+
+  const loadStats = () => {
+    const completedDays = JSON.parse(localStorage.getItem('completed_days') || '[]');
+    const scores = JSON.parse(localStorage.getItem('connection_scores') || '{}');
+    const scoreValues = Object.values(scores).map(Number);
+    const avgScore = scoreValues.length > 0
+      ? (scoreValues.reduce((a, b) => a + b, 0) / scoreValues.length).toFixed(1) : 0;
+
+    // Count answered questions
+    let totalAnswered = 0;
+    for (let i = 1; i <= 30; i++) {
+      const a = localStorage.getItem(`answers_day_${i}`);
+      if (a) totalAnswered += Object.keys(JSON.parse(a)).length;
     }
+
+    // Count reflections
+    let totalReflections = 0;
+    for (let i = 1; i <= 30; i++) {
+      if (localStorage.getItem(`reflection_day_${i}`)) totalReflections++;
+    }
+
+    setStats({
+      completedDays: completedDays.length,
+      avgScore,
+      totalAnswered,
+      totalReflections,
+      retentionDay7: completedDays.includes(7) ? 100 : completedDays.length >= 7 ? 0 : null,
+      retentionDay15: completedDays.includes(15) ? 100 : completedDays.length >= 15 ? 0 : null,
+      retentionDay30: completedDays.includes(30) ? 100 : completedDays.length >= 30 ? 0 : null,
+      scoreHistory: scores,
+      completedList: completedDays,
+    });
   };
 
   const generateCodes = () => {
@@ -60,9 +93,7 @@ export default function AdminPage() {
   };
 
   const toggleCodeStatus = (id) => {
-    const updated = codes.map(c =>
-      c.id === id ? { ...c, usado: !c.usado } : c
-    );
+    const updated = codes.map(c => c.id === id ? { ...c, usado: !c.usado } : c);
     setCodes(updated);
     localStorage.setItem('admin_codes', JSON.stringify(updated));
   };
@@ -77,6 +108,19 @@ export default function AdminPage() {
   const copyCode = (code) => {
     navigator.clipboard.writeText(code);
     showToast('Código copiado al portapapeles', 'success');
+  };
+
+  const exportCodesCSV = () => {
+    let csv = 'Código,Estado,Creado,Usado Por\n';
+    codes.forEach(c => {
+      csv += `${c.codigo},${c.usado ? 'Usado' : 'Disponible'},${new Date(c.creado).toLocaleDateString('es')},${c.usado_por || ''}\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'codigos_acceso.csv';
+    link.click();
+    showToast('CSV descargado', 'success');
   };
 
   const showToast = (message, type) => {
@@ -166,6 +210,18 @@ export default function AdminPage() {
             🔑 Códigos
           </button>
           <button
+            className={`admin-sidebar-link ${activeTab === 'analytics' ? 'active' : ''}`}
+            onClick={() => setActiveTab('analytics')}
+          >
+            📈 Analíticas
+          </button>
+          <button
+            className={`admin-sidebar-link ${activeTab === 'marketing' ? 'active' : ''}`}
+            onClick={() => setActiveTab('marketing')}
+          >
+            📣 Marketing
+          </button>
+          <button
             className={`admin-sidebar-link ${activeTab === 'config' ? 'active' : ''}`}
             onClick={() => setActiveTab('config')}
           >
@@ -202,13 +258,41 @@ export default function AdminPage() {
                 <div className="admin-stat-value" style={{ color: 'var(--color-accent)' }}>
                   {usedCodes.length}
                 </div>
-                <div className="admin-stat-label">Usados</div>
+                <div className="admin-stat-label">Vendidos</div>
               </div>
               <div className="admin-stat-card">
                 <div className="admin-stat-value" style={{ color: 'var(--color-accent)' }}>
                   {usedCodes.length * 70} Bs
                 </div>
-                <div className="admin-stat-label">Ingresos Estimados</div>
+                <div className="admin-stat-label">Ingresos</div>
+              </div>
+            </div>
+
+            {/* User Activity Stats */}
+            <div className="admin-stat-grid" style={{ marginBottom: 'var(--space-2xl)' }}>
+              <div className="admin-stat-card">
+                <div className="admin-stat-value" style={{ color: 'var(--color-info)' }}>
+                  {stats.completedDays || 0}
+                </div>
+                <div className="admin-stat-label">Días Completados</div>
+              </div>
+              <div className="admin-stat-card">
+                <div className="admin-stat-value" style={{ color: 'var(--color-primary-light)' }}>
+                  {stats.totalAnswered || 0}
+                </div>
+                <div className="admin-stat-label">Respuestas Totales</div>
+              </div>
+              <div className="admin-stat-card">
+                <div className="admin-stat-value" style={{ color: 'var(--color-secondary-light)' }}>
+                  {stats.totalReflections || 0}
+                </div>
+                <div className="admin-stat-label">Reflexiones</div>
+              </div>
+              <div className="admin-stat-card">
+                <div className="admin-stat-value" style={{ color: 'var(--color-success)' }}>
+                  {stats.avgScore || 0}/10
+                </div>
+                <div className="admin-stat-label">Conexión Promedio</div>
               </div>
             </div>
 
@@ -217,6 +301,9 @@ export default function AdminPage() {
               <div style={{ display: 'flex', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
                 <button className="btn btn-primary" onClick={() => setActiveTab('codigos')}>
                   🔑 Gestionar Códigos
+                </button>
+                <button className="btn btn-secondary" onClick={exportCodesCSV}>
+                  📥 Exportar CSV
                 </button>
                 <a
                   href="https://wa.me/59176419099"
@@ -235,7 +322,6 @@ export default function AdminPage() {
           <>
             <h1 style={{ marginBottom: 'var(--space-2xl)' }}>🔑 Códigos de Acceso</h1>
 
-            {/* Generate Codes */}
             <div className="glass-card" style={{ marginBottom: 'var(--space-2xl)' }}>
               <h3 style={{ marginBottom: 'var(--space-lg)' }}>Generar Nuevos Códigos</h3>
               <div style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'flex-end', flexWrap: 'wrap' }}>
@@ -253,10 +339,12 @@ export default function AdminPage() {
                 <button className="btn btn-accent" onClick={generateCodes}>
                   ✨ Generar {newCodesCount} Códigos
                 </button>
+                <button className="btn btn-secondary" onClick={exportCodesCSV}>
+                  📥 Exportar CSV
+                </button>
               </div>
             </div>
 
-            {/* Codes Table */}
             <div className="glass-card">
               <h3 style={{ marginBottom: 'var(--space-lg)' }}>
                 Todos los Códigos ({codes.length})
@@ -264,7 +352,7 @@ export default function AdminPage() {
 
               {codes.length === 0 ? (
                 <p style={{ color: 'var(--color-text-muted)', textAlign: 'center', padding: 'var(--space-2xl)' }}>
-                  No hay códigos generados aún. Genera algunos arriba.
+                  No hay códigos generados aún.
                 </p>
               ) : (
                 <div className="table-container">
@@ -301,28 +389,9 @@ export default function AdminPage() {
                           </td>
                           <td>
                             <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-                              <button
-                                className="btn btn-secondary btn-sm"
-                                onClick={() => copyCode(code.codigo)}
-                                title="Copiar"
-                                style={{ padding: '4px 10px', fontSize: '0.75rem' }}
-                              >
-                                📋
-                              </button>
-                              <button
-                                className="btn btn-secondary btn-sm"
-                                onClick={() => toggleCodeStatus(code.id)}
-                                style={{ padding: '4px 10px', fontSize: '0.75rem' }}
-                              >
-                                {code.usado ? '🔓' : '🔒'}
-                              </button>
-                              <button
-                                className="btn btn-secondary btn-sm"
-                                onClick={() => deleteCode(code.id)}
-                                style={{ padding: '4px 10px', fontSize: '0.75rem', color: 'var(--color-danger)' }}
-                              >
-                                🗑️
-                              </button>
+                              <button className="btn btn-secondary btn-sm" onClick={() => copyCode(code.codigo)} style={{ padding: '4px 10px', fontSize: '0.75rem' }}>📋</button>
+                              <button className="btn btn-secondary btn-sm" onClick={() => toggleCodeStatus(code.id)} style={{ padding: '4px 10px', fontSize: '0.75rem' }}>{code.usado ? '🔓' : '🔒'}</button>
+                              <button className="btn btn-secondary btn-sm" onClick={() => deleteCode(code.id)} style={{ padding: '4px 10px', fontSize: '0.75rem', color: 'var(--color-danger)' }}>🗑️</button>
                             </div>
                           </td>
                         </tr>
@@ -331,6 +400,155 @@ export default function AdminPage() {
                   </table>
                 </div>
               )}
+            </div>
+          </>
+        )}
+
+        {activeTab === 'analytics' && (
+          <>
+            <h1 style={{ marginBottom: 'var(--space-2xl)' }}>📈 Analíticas</h1>
+
+            {/* Retention funnel */}
+            <div className="glass-card" style={{ marginBottom: 'var(--space-xl)' }}>
+              <h3 style={{ marginBottom: 'var(--space-lg)' }}>🎯 Embudo de Retención</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                {[
+                  { label: 'Registro', value: 100, color: 'var(--color-primary)' },
+                  { label: 'Completó Día 1', value: stats.completedDays >= 1 ? 100 : 0, color: 'var(--color-info)' },
+                  { label: 'Completó Día 7', value: (stats.completedList || []).includes(7) ? 100 : 0, color: 'var(--color-accent)' },
+                  { label: 'Completó Día 15', value: (stats.completedList || []).includes(15) ? 100 : 0, color: 'var(--color-secondary-light)' },
+                  { label: 'Completó Día 21', value: (stats.completedList || []).includes(21) ? 100 : 0, color: 'var(--color-warning)' },
+                  { label: 'Completó Día 30', value: (stats.completedList || []).includes(30) ? 100 : 0, color: 'var(--color-success)' },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+                    <span style={{ width: '140px', fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>{item.label}</span>
+                    <div style={{ flex: 1, height: '28px', background: 'rgba(255,255,255,0.05)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
+                      <div style={{
+                        width: `${item.value}%`,
+                        height: '100%',
+                        background: item.color,
+                        borderRadius: 'var(--radius-full)',
+                        transition: 'width 1s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                        paddingRight: '8px',
+                      }}>
+                        <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'white' }}>{item.value}%</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Connection score chart */}
+            <div className="glass-card" style={{ marginBottom: 'var(--space-xl)' }}>
+              <h3 style={{ marginBottom: 'var(--space-lg)' }}>📊 Conexión por Día</h3>
+              <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', height: '160px', borderBottom: '1px solid var(--color-border)' }}>
+                {Array.from({ length: 30 }, (_, i) => i + 1).map(day => {
+                  const score = stats.scoreHistory?.[day] || 0;
+                  const h = score ? (score / 10) * 140 : 0;
+                  return (
+                    <div key={day} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }} title={`Día ${day}: ${score}/10`}>
+                      <div style={{
+                        width: '100%', maxWidth: '20px', height: `${h}px`,
+                        background: score >= 7 ? 'var(--color-success)' : score >= 4 ? 'var(--color-warning)' : score > 0 ? 'var(--color-danger)' : 'rgba(255,255,255,0.05)',
+                        borderRadius: '3px 3px 0 0', transition: 'height 0.5s ease',
+                      }} />
+                    </div>
+                  );
+                })}
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px', fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                <span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30</span>
+              </div>
+            </div>
+
+            {/* Key metrics */}
+            <div className="glass-card">
+              <h3 style={{ marginBottom: 'var(--space-lg)' }}>📋 Métricas Clave</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                {[
+                  { label: 'Tasa de Completado', value: `${Math.round((stats.completedDays || 0) / 30 * 100)}%` },
+                  { label: 'Promedio Respuestas/Día', value: stats.completedDays > 0 ? ((stats.totalAnswered || 0) / stats.completedDays).toFixed(1) : '0' },
+                  { label: 'Días con Reflexión', value: `${stats.totalReflections || 0}/30` },
+                  { label: 'Conexión Promedio', value: `${stats.avgScore || 0}/10` },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: 'var(--space-sm) 0', borderBottom: '1px solid var(--color-border)' }}>
+                    <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>{item.label}</span>
+                    <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === 'marketing' && (
+          <>
+            <h1 style={{ marginBottom: 'var(--space-2xl)' }}>📣 Marketing</h1>
+
+            <div className="glass-card" style={{ marginBottom: 'var(--space-xl)' }}>
+              <h3 style={{ marginBottom: 'var(--space-lg)' }}>📱 Texto WhatsApp (Copiar y Pegar)</h3>
+              <div style={{ background: 'rgba(0,0,0,0.2)', padding: 'var(--space-lg)', borderRadius: 'var(--radius-md)', whiteSpace: 'pre-wrap', fontSize: '0.88rem', lineHeight: 1.6 }}>
+{`📘 CUADERNILLO DE TERAPIA DE PAREJA – PROGRAMA DE 30 DÍAS
+
+Un material práctico para trabajar juntos temas importantes de la relación, reflexionar, conversar y fortalecer la conexión.
+
+🎁 POR PROMOCIÓN: SOLO 70 Bs
+
+Además, recibirás:
+✅ Cuadernillo de Terapia de Pareja – 30 días
+✅ Libro: Cómo manejar conversaciones difíciles
+✅ 🤖 Chatbot especializado
+✅ 🎧 Podcast sobre terapia y conexión de pareja
+✅ 🎥 Video explicativo
+
+📲 Escríbeme "QUIERO EL CUADERNILLO" al 76419099`}
+              </div>
+              <button
+                className="btn btn-primary mt-md"
+                onClick={() => {
+                  navigator.clipboard.writeText(`📘 CUADERNILLO DE TERAPIA DE PAREJA – PROGRAMA DE 30 DÍAS\n\nUn material práctico para trabajar juntos temas importantes de la relación, reflexionar, conversar y fortalecer la conexión.\n\n🎁 POR PROMOCIÓN: SOLO 70 Bs\n\nAdemás, recibirás:\n✅ Cuadernillo de Terapia de Pareja – 30 días\n✅ Libro: Cómo manejar conversaciones difíciles\n✅ 🤖 Chatbot especializado\n✅ 🎧 Podcast sobre terapia y conexión de pareja\n✅ 🎥 Video explicativo\n\n📲 Escríbeme "QUIERO EL CUADERNILLO" al 76419099`);
+                  showToast('Texto copiado', 'success');
+                }}
+              >
+                📋 Copiar Texto
+              </button>
+            </div>
+
+            <div className="glass-card" style={{ marginBottom: 'var(--space-xl)' }}>
+              <h3 style={{ marginBottom: 'var(--space-lg)' }}>🎯 Segmentación Facebook Ads</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+                {[
+                  {
+                    title: 'Público 1: Parejas y Relaciones',
+                    interests: 'Relaciones, Matrimonio, Parejas, Psicología, Salud mental, Bienestar, Desarrollo personal, Inteligencia emocional',
+                    audience: '25-55 años, Hombres y Mujeres, Santa Cruz, Bolivia',
+                  },
+                  {
+                    title: 'Público 2: Psicología + Desarrollo Personal',
+                    interests: 'Psicología, Psicoterapia, Salud mental, Autoayuda, Inteligencia emocional, Bienestar, Mindfulness, Comunicación',
+                    audience: '25-55 años, Hombres y Mujeres, Santa Cruz, Bolivia',
+                  },
+                  {
+                    title: 'Público 3: Matrimonio/Familia',
+                    interests: 'Matrimonio, Familia, Relaciones, Padres',
+                    audience: '30-50 años, Hombres y Mujeres, Santa Cruz, Bolivia',
+                  },
+                ].map((pub, i) => (
+                  <div key={i} style={{ padding: 'var(--space-md)', background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border)' }}>
+                    <h4 style={{ fontSize: '0.95rem', marginBottom: 'var(--space-sm)', color: 'var(--color-accent)' }}>{pub.title}</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginBottom: '4px' }}>
+                      <strong>Intereses:</strong> {pub.interests}
+                    </p>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>
+                      <strong>Audiencia:</strong> {pub.audience}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </>
         )}
@@ -366,8 +584,7 @@ export default function AdminPage() {
             <div className="glass-card">
               <h3 style={{ marginBottom: 'var(--space-lg)' }}>🔗 Supabase</h3>
               <p style={{ color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)' }}>
-                Para conectar con una base de datos real, configura las credenciales de Supabase
-                en el archivo <code style={{ color: 'var(--color-accent)' }}>.env.local</code>
+                Para conectar con una base de datos real, configura las credenciales en <code style={{ color: 'var(--color-accent)' }}>.env.local</code>
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                 <div className="input-group">
@@ -380,8 +597,7 @@ export default function AdminPage() {
                 </div>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: 'var(--space-md)' }}>
-                Nota: Estas credenciales deben configurarse en el servidor, no en este formulario.
-                Copia los valores al archivo .env.local
+                Nota: Estas credenciales deben configurarse en el servidor, no aquí.
               </p>
             </div>
           </>

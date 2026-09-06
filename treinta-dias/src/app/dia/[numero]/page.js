@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import programData from '@/data/program.json';
+import Celebration from '@/components/Celebration';
 
 export default function DiaPage({ params }) {
   const { numero } = use(params);
@@ -18,6 +19,10 @@ export default function DiaPage({ params }) {
   const [showReflection, setShowReflection] = useState(false);
   const [dayCompleted, setDayCompleted] = useState(false);
   const [toast, setToast] = useState(null);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [partnerLinked, setPartnerLinked] = useState(false);
+  const [partnerAnswers, setPartnerAnswers] = useState({});
+  const [showPartner, setShowPartner] = useState({});
 
   const dia = programData.dias.find(d => d.numero === dayNum);
 
@@ -34,6 +39,34 @@ export default function DiaPage({ params }) {
     if (dayNum > 1 && !parsed.tiene_acceso_completo) {
       router.push('/activar');
       return;
+    }
+
+    // Check partner
+    const partner = localStorage.getItem('partner_info');
+    if (partner) {
+      setPartnerLinked(true);
+      // In demo mode, simulate partner answers for completed questions
+      const simulated = {};
+      const savedAns = localStorage.getItem(`answers_day_${dayNum}`);
+      if (savedAns) {
+        const parsed = JSON.parse(savedAns);
+        Object.keys(parsed).forEach(key => {
+          // 70% chance partner has answered (demo simulation)
+          if (Math.random() > 0.3) {
+            const partnerResponses = [
+              'Creo que es importante que trabajemos juntos en esto.',
+              'Me hace reflexionar mucho sobre nuestra relación.',
+              'Siento que estamos avanzando en la dirección correcta.',
+              'A veces es difícil expresar lo que siento, pero lo intento.',
+              'Estoy agradecido/a por este espacio de diálogo.',
+              'Necesitamos más momentos como este.',
+              'Me siento escuchado/a cuando hacemos este ejercicio.',
+            ];
+            simulated[key] = partnerResponses[Math.floor(Math.random() * partnerResponses.length)];
+          }
+        });
+      }
+      setPartnerAnswers(simulated);
     }
 
     // Load saved answers
@@ -90,12 +123,12 @@ export default function DiaPage({ params }) {
     const updatedAnswers = { ...answers, [index]: answers[index] };
     localStorage.setItem(`answers_day_${dayNum}`, JSON.stringify(updatedAnswers));
     setSaved(prev => ({ ...prev, [index]: true }));
-    showToast('Respuesta guardada ✓', 'success');
+    showToastMsg('Respuesta guardada ✓', 'success');
   };
 
   const handleSaveReflection = () => {
     localStorage.setItem(`reflection_day_${dayNum}`, JSON.stringify(reflection));
-    showToast('Reflexión guardada ✓', 'success');
+    showToastMsg('Reflexión guardada ✓', 'success');
   };
 
   const handleSaveConnectionScore = (score) => {
@@ -103,7 +136,7 @@ export default function DiaPage({ params }) {
     const savedScores = JSON.parse(localStorage.getItem('connection_scores') || '{}');
     savedScores[dayNum] = score;
     localStorage.setItem('connection_scores', JSON.stringify(savedScores));
-    showToast(`Nivel de conexión: ${score}/10`, 'success');
+    showToastMsg(`Nivel de conexión: ${score}/10`, 'success');
   };
 
   const handleCompleteDay = () => {
@@ -113,17 +146,20 @@ export default function DiaPage({ params }) {
       localStorage.setItem('completed_days', JSON.stringify(completedDays));
     }
     setDayCompleted(true);
-    showToast('¡Día completado! 🎉', 'success');
 
-    // If day 30, show celebration
-    if (dayNum === 30) {
-      setTimeout(() => {
-        showToast('🎉 ¡Felicidades! Han completado los 30 días. ¡Celebren juntos!', 'success');
-      }, 1500);
+    // Check for milestones
+    if ([7, 15, 21, 30].includes(dayNum)) {
+      setShowCelebration(true);
+    } else {
+      showToastMsg('¡Día completado! 🎉', 'success');
     }
   };
 
-  const showToast = (message, type) => {
+  const togglePartnerAnswer = (index) => {
+    setShowPartner(prev => ({ ...prev, [index]: !prev[index] }));
+  };
+
+  const showToastMsg = (message, type) => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
   };
@@ -147,6 +183,17 @@ export default function DiaPage({ params }) {
 
   return (
     <>
+      {/* Celebration Modal */}
+      {showCelebration && (
+        <Celebration
+          dayNumber={dayNum}
+          onClose={() => {
+            setShowCelebration(false);
+            if (dayNum === 30) router.push('/reporte');
+          }}
+        />
+      )}
+
       {/* Header */}
       <header className="header">
         <div className="header-inner">
@@ -183,6 +230,18 @@ export default function DiaPage({ params }) {
             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: '600px' }}>
               {dia.descripcion}
             </p>
+
+            {/* Partner status */}
+            {partnerLinked && (
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 'var(--space-sm)',
+                marginTop: 'var(--space-md)', padding: '6px 14px',
+                background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.2)',
+                borderRadius: 'var(--radius-full)', fontSize: '0.8rem', color: 'var(--color-success)',
+              }}>
+                💑 Pareja vinculada — las respuestas se compartirán mutuamente
+              </div>
+            )}
 
             {/* Progress */}
             <div style={{ marginTop: 'var(--space-xl)' }}>
@@ -235,6 +294,57 @@ export default function DiaPage({ params }) {
                     </span>
                   )}
                 </div>
+
+                {/* Partner's response (shared) */}
+                {partnerLinked && saved[pregunta.index] && partnerAnswers[pregunta.index] && (
+                  <div style={{ marginTop: 'var(--space-md)', borderTop: '1px solid var(--color-border)', paddingTop: 'var(--space-md)' }}>
+                    <button
+                      onClick={() => togglePartnerAnswer(pregunta.index)}
+                      style={{
+                        background: 'none', border: 'none', cursor: 'pointer',
+                        color: 'var(--color-primary-light)', fontSize: '0.85rem',
+                        display: 'flex', alignItems: 'center', gap: '6px',
+                        fontFamily: 'var(--font-body)',
+                      }}
+                    >
+                      💑 {showPartner[pregunta.index] ? 'Ocultar respuesta de tu pareja' : 'Ver respuesta de tu pareja'}
+                      <span style={{
+                        transition: 'transform 0.2s ease',
+                        transform: showPartner[pregunta.index] ? 'rotate(180deg)' : 'rotate(0)',
+                        display: 'inline-block',
+                      }}>▼</span>
+                    </button>
+                    {showPartner[pregunta.index] && (
+                      <div style={{
+                        marginTop: 'var(--space-sm)',
+                        padding: 'var(--space-md)',
+                        background: 'rgba(232,99,111,0.06)',
+                        border: '1px solid rgba(232,99,111,0.15)',
+                        borderRadius: 'var(--radius-md)',
+                        borderLeft: '3px solid var(--color-primary)',
+                        animation: 'fadeInUp 0.3s ease',
+                      }}>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--color-primary-light)', marginBottom: '4px', fontWeight: 600 }}>
+                          💕 Respuesta de tu pareja:
+                        </div>
+                        <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
+                          {partnerAnswers[pregunta.index]}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Unlock indicator */}
+                {partnerLinked && saved[pregunta.index] && !partnerAnswers[pregunta.index] && (
+                  <div style={{
+                    marginTop: 'var(--space-md)', paddingTop: 'var(--space-sm)',
+                    borderTop: '1px solid var(--color-border)',
+                    fontSize: '0.8rem', color: 'var(--color-text-muted)',
+                  }}>
+                    🔒 Tu pareja aún no ha respondido esta pregunta
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -346,13 +456,12 @@ export default function DiaPage({ params }) {
                   </Link>
                 ) : (
                   <div className="glass-card" style={{ borderColor: 'var(--color-accent)', padding: 'var(--space-2xl)' }}>
-                    <h2 style={{ marginBottom: 'var(--space-md)' }}>🎉 ¡FELICIDADES!</h2>
-                    <p style={{ fontSize: '1.1rem', color: 'var(--color-text-secondary)' }}>
-                      Han completado los 30 días del programa. Han demostrado un compromiso
-                      real con su relación. ¡Celebren juntos este logro!
+                    <h2 style={{ marginBottom: 'var(--space-md)' }}>🏆 ¡PROGRAMA COMPLETADO!</h2>
+                    <p style={{ fontSize: '1.1rem', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)' }}>
+                      Han completado los 30 días del programa. ¡Celebren juntos este logro increíble!
                     </p>
-                    <Link href="/progreso" className="btn btn-accent btn-lg mt-lg">
-                      📊 Ver Resumen Final
+                    <Link href="/reporte" className="btn btn-accent btn-lg">
+                      📊 Ver Reporte Final
                     </Link>
                   </div>
                 )}
