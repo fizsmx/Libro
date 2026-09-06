@@ -91,7 +91,8 @@ export default function DashboardPage() {
           <nav className="header-nav">
             <Link href="/dashboard">Programa</Link>
             <Link href="/progreso">Progreso</Link>
-            <Link href="/activar">Activar Código</Link>
+            <Link href="/recursos">Recursos</Link>
+            <Link href="/invitar">💑 Pareja</Link>
             <button
               onClick={handleLogout}
               className="btn btn-secondary btn-sm"

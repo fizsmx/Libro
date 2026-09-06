@@ -1,4 +1,5 @@
 import './globals.css';
+import ChatBot from '@/components/ChatBot';
 
 export const metadata = {
   title: '30 Días Para Reconectar — Programa de Terapia de Pareja',
@@ -14,7 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        <ChatBot />
+      </body>
     </html>
   );
 }
