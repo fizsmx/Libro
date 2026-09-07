@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getCurrentUser } from '@/lib/supabase-auth';
+
 export default function InvitarPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -12,23 +14,27 @@ export default function InvitarPage() {
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) { router.push('/login'); return; }
-    const parsed = JSON.parse(demoUser);
+    async function initUser() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) { router.push('/login'); return; }
 
-    // Generate invite code if not exists
-    if (!parsed.codigo_invitacion) {
-      parsed.codigo_invitacion = 'INV-' + Math.random().toString(36).substr(2, 8).toUpperCase();
-      localStorage.setItem('demo_user', JSON.stringify(parsed));
+      // Generate invite code if not exists
+      if (!currentUser.codigo_invitacion) {
+        currentUser.codigo_invitacion = 'INV-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        localStorage.setItem('demo_user', JSON.stringify(currentUser));
+      }
+
+      setUser(currentUser);
+
+      // Check if already linked
+      const partner = localStorage.getItem('partner_info');
+      if (partner) {
+        try {
+          setPartnerName(JSON.parse(partner).nombre);
+        } catch (e) {}
+      }
     }
-
-    setUser(parsed);
-
-    // Check if already linked
-    const partner = localStorage.getItem('partner_info');
-    if (partner) {
-      setPartnerName(JSON.parse(partner).nombre);
-    }
+    initUser();
   }, [router]);
 
   const handleCopy = () => {

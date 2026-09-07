@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { supabase, isConfigured } from '@/lib/supabase';
+import { signUp } from '@/lib/supabase-auth';
 
 export default function RegistroPage() {
   const router = useRouter();
@@ -12,45 +12,28 @@ export default function RegistroPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMsg('');
     setLoading(true);
 
-    if (!isConfigured()) {
-      const demoCode = 'INV-' + Math.random().toString(36).substr(2, 8).toUpperCase();
-      localStorage.setItem('demo_user', JSON.stringify({
-        email,
-        nombre,
-        codigo_invitacion: demoCode,
-        tiene_acceso_completo: false,
-        dia_actual: 1,
-      }));
-      router.push('/dashboard');
-      return;
-    }
-
     try {
-      const { data, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { nombre },
-        },
-      });
+      const res = await signUp(email.trim(), password, nombre.trim());
 
-      if (authError) throw authError;
-
-      // Create profile
-      if (data.user) {
-        await supabase.from('perfiles').insert({
-          id: data.user.id,
-          nombre,
-          email,
-        });
+      if (res.error) {
+        setError(res.error);
+        return;
       }
 
+      if (res.needsEmailConfirmation) {
+        setSuccessMsg('¡Cuenta creada con éxito! Se ha enviado un enlace de confirmación a tu correo. Haz clic en él e inicia sesión.');
+        return;
+      }
+
+      // Successfully registered and logged in
       router.push('/dashboard');
     } catch (err) {
       setError(err.message || 'Error al crear la cuenta');
@@ -81,6 +64,25 @@ export default function RegistroPage() {
             marginBottom: 'var(--space-md)',
           }}>
             {error}
+          </div>
+        )}
+
+        {successMsg && (
+          <div style={{
+            padding: 'var(--space-md)',
+            background: 'rgba(52, 211, 153, 0.15)',
+            border: '1px solid rgba(52, 211, 153, 0.4)',
+            borderRadius: 'var(--radius-md)',
+            color: '#059669',
+            fontSize: '0.9rem',
+            marginBottom: 'var(--space-md)',
+          }}>
+            {successMsg}
+            <div style={{ marginTop: 'var(--space-sm)' }}>
+              <Link href="/login" className="btn btn-primary btn-sm" style={{ display: 'inline-block' }}>
+                Ir a Iniciar Sesión
+              </Link>
+            </div>
           </div>
         )}
 

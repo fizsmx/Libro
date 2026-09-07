@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import programData from '@/data/program.json';
 import Celebration from '@/components/Celebration';
+import { getCurrentUser } from '@/lib/supabase-auth';
 
 export default function DiaPage({ params }) {
   const { numero } = use(params);
@@ -27,19 +28,19 @@ export default function DiaPage({ params }) {
   const dia = programData.dias.find(d => d.numero === dayNum);
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) {
-      router.push('/login');
-      return;
-    }
-    const parsed = JSON.parse(demoUser);
-    setUser(parsed);
+    async function loadDia() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) {
+        router.push('/login');
+        return;
+      }
+      setUser(currentUser);
 
-    // Check access
-    if (dayNum > 1 && !parsed.tiene_acceso_completo) {
-      router.push('/activar');
-      return;
-    }
+      // Check access
+      if (dayNum > 1 && !currentUser.tiene_acceso_completo) {
+        router.push('/activar');
+        return;
+      }
 
     // Check partner
     const partner = localStorage.getItem('partner_info');
@@ -95,7 +96,10 @@ export default function DiaPage({ params }) {
     // Check if day is completed
     const completedDays = JSON.parse(localStorage.getItem('completed_days') || '[]');
     setDayCompleted(completedDays.includes(dayNum));
-  }, [dayNum, router]);
+  }
+
+  loadDia();
+}, [dayNum, router]);
 
   if (!dia) {
     return (

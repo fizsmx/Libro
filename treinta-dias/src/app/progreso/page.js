@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import programData from '@/data/program.json';
 
+import { getCurrentUser } from '@/lib/supabase-auth';
+
 export default function ProgresoPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -12,15 +14,18 @@ export default function ProgresoPage() {
   const [scores, setScores] = useState({});
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) { router.push('/login'); return; }
-    setUser(JSON.parse(demoUser));
+    async function initUser() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) { router.push('/login'); return; }
+      setUser(currentUser);
 
-    const savedCompleted = localStorage.getItem('completed_days');
-    if (savedCompleted) setCompletedDays(JSON.parse(savedCompleted));
+      const savedCompleted = localStorage.getItem('completed_days');
+      if (savedCompleted) setCompletedDays(JSON.parse(savedCompleted));
 
-    const savedScores = localStorage.getItem('connection_scores');
-    if (savedScores) setScores(JSON.parse(savedScores));
+      const savedScores = localStorage.getItem('connection_scores');
+      if (savedScores) setScores(JSON.parse(savedScores));
+    }
+    initUser();
   }, [router]);
 
   const scoreValues = Object.entries(scores).sort(([a], [b]) => Number(a) - Number(b));

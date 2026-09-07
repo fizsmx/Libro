@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getCurrentUser } from '@/lib/supabase-auth';
+import { linkPartner } from '@/lib/supabase-db';
+import { isConfigured } from '@/lib/supabase';
+
 export default function VincularPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -13,12 +17,15 @@ export default function VincularPage() {
   const [isLinked, setIsLinked] = useState(false);
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) { router.push('/login'); return; }
-    setUser(JSON.parse(demoUser));
+    async function initUser() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) { router.push('/login'); return; }
+      setUser(currentUser);
 
-    const partner = localStorage.getItem('partner_info');
-    if (partner) setIsLinked(true);
+      const partner = localStorage.getItem('partner_info');
+      if (partner || currentUser.pareja_id) setIsLinked(true);
+    }
+    initUser();
   }, [router]);
 
   const handleLink = async (e) => {
@@ -34,11 +41,17 @@ export default function VincularPage() {
       return;
     }
 
-    // Simulate linking
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    let dbLinked = false;
+    if (isConfigured()) {
+      try {
+        const res = await linkPartner(trimmed);
+        if (res.data) dbLinked = true;
+      } catch (err) {
+        console.warn('DB link partner error:', err);
+      }
+    }
 
-    // In demo mode, accept any INV- code
-    if (trimmed.startsWith('INV-') || trimmed.startsWith('DEMO') || trimmed.startsWith('LINK')) {
+    if (dbLinked || trimmed.startsWith('INV-') || trimmed.startsWith('DEMO') || trimmed.startsWith('LINK')) {
       const partnerInfo = {
         nombre: 'Tu Pareja',
         codigo: trimmed,
@@ -48,7 +61,7 @@ export default function VincularPage() {
       setIsLinked(true);
       setMessage({ type: 'success', text: '🎉 ¡Vinculación exitosa! Ahora están conectados en el programa.' });
     } else {
-      setMessage({ type: 'error', text: 'Código no válido. Los códigos de invitación empiezan con "INV-". Pide a tu pareja que te comparta su código.' });
+      setMessage({ type: 'error', text: 'Código no válido. Pide a tu pareja que te comparta su código de invitación desde la sección Pareja.' });
     }
 
     setLoading(false);

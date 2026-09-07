@@ -4,17 +4,21 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getCurrentUser } from '@/lib/supabase-auth';
+
 export default function RecursosPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) { router.push('/login'); return; }
-    const parsed = JSON.parse(demoUser);
-    setUser(parsed);
-    setHasAccess(parsed.tiene_acceso_completo || false);
+    async function initUser() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) { router.push('/login'); return; }
+      setUser(currentUser);
+      setHasAccess(currentUser.tiene_acceso_completo || false);
+    }
+    initUser();
   }, [router]);
 
   if (!user) return null;

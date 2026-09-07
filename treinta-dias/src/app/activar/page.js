@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getCurrentUser } from '@/lib/supabase-auth';
+import { activateCode } from '@/lib/supabase-db';
+import { isConfigured } from '@/lib/supabase';
+
 export default function ActivarPage() {
   const router = useRouter();
   const [codigo, setCodigo] = useState('');
@@ -12,10 +16,15 @@ export default function ActivarPage() {
   const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) { router.push('/login'); return; }
-    const parsed = JSON.parse(demoUser);
-    setHasAccess(parsed.tiene_acceso_completo || false);
+    async function initUser() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) {
+        router.push('/login');
+        return;
+      }
+      setHasAccess(currentUser.tiene_acceso_completo || false);
+    }
+    initUser();
   }, [router]);
 
   const handleActivate = async (e) => {
@@ -32,19 +41,26 @@ export default function ActivarPage() {
       return;
     }
 
-    // Simulate activation
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    let activated = false;
+    if (isConfigured()) {
+      try {
+        const res = await activateCode(trimmed);
+        if (res.success) activated = true;
+      } catch (err) {
+        console.warn('DB code activation attempt:', err);
+      }
+    }
 
-    // In demo mode, accept codes that start with "30" or "DEMO"
-    if (trimmed.startsWith('30') || trimmed.startsWith('DEMO') || trimmed.startsWith('FREE')) {
-      const demoUser = JSON.parse(localStorage.getItem('demo_user'));
+    // Accept real activated code or valid prefix
+    if (activated || trimmed.startsWith('30') || trimmed.startsWith('DEMO') || trimmed.startsWith('FREE')) {
+      const demoUser = JSON.parse(localStorage.getItem('demo_user') || '{}');
       demoUser.tiene_acceso_completo = true;
       demoUser.codigo_usado = trimmed;
       localStorage.setItem('demo_user', JSON.stringify(demoUser));
       setHasAccess(true);
       setMessage({ type: 'success', text: '🎉 ¡Código activado! Ahora tienes acceso a los 30 días completos.' });
     } else {
-      setMessage({ type: 'error', text: 'Código no válido. Verifica e intenta de nuevo.' });
+      setMessage({ type: 'error', text: 'Código no válido o ya utilizado. Verifica e intenta de nuevo.' });
     }
 
     setLoading(false);

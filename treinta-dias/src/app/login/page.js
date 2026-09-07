@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { supabase, isConfigured } from '@/lib/supabase';
+import { signIn } from '@/lib/supabase-auth';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,20 +17,14 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
-    if (!isConfigured()) {
-      // Demo mode — redirect to dashboard
-      localStorage.setItem('demo_user', JSON.stringify({ email, nombre: email.split('@')[0] }));
-      router.push('/dashboard');
-      return;
-    }
-
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const res = await signIn(email.trim(), password);
 
-      if (authError) throw authError;
+      if (res.error) {
+        setError(res.error);
+        return;
+      }
+
       router.push('/dashboard');
     } catch (err) {
       setError(err.message || 'Error al iniciar sesión');

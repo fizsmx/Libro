@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import programData from '@/data/program.json';
 
+import { getCurrentUser, signOutUser } from '@/lib/supabase-auth';
+
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -14,33 +16,35 @@ export default function DashboardPage() {
   const [connectionScore, setConnectionScore] = useState(0);
 
   useEffect(() => {
-    // Load user from localStorage (demo mode) or Supabase
-    const demoUser = localStorage.getItem('demo_user');
-    if (demoUser) {
-      const parsed = JSON.parse(demoUser);
-      setUser(parsed);
-      setHasAccess(parsed.tiene_acceso_completo || false);
-    } else {
-      router.push('/login');
-      return;
-    }
+    async function loadData() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) {
+        router.push('/login');
+        return;
+      }
 
-    // Load completed days
-    const savedCompleted = localStorage.getItem('completed_days');
-    if (savedCompleted) {
-      setCompletedDays(JSON.parse(savedCompleted));
-    }
+      setUser(currentUser);
+      setHasAccess(currentUser.tiene_acceso_completo || false);
 
-    // Load connection scores
-    const savedScores = localStorage.getItem('connection_scores');
-    if (savedScores) {
-      const scores = JSON.parse(savedScores);
-      const values = Object.values(scores);
-      if (values.length > 0) {
-        const avg = values.reduce((a, b) => a + b, 0) / values.length;
-        setConnectionScore(Math.round(avg * 10) / 10);
+      // Load completed days
+      const savedCompleted = localStorage.getItem('completed_days');
+      if (savedCompleted) {
+        setCompletedDays(JSON.parse(savedCompleted));
+      }
+
+      // Load connection scores
+      const savedScores = localStorage.getItem('connection_scores');
+      if (savedScores) {
+        const scores = JSON.parse(savedScores);
+        const values = Object.values(scores);
+        if (values.length > 0) {
+          const avg = values.reduce((a, b) => a + b, 0) / values.length;
+          setConnectionScore(Math.round(avg * 10) / 10);
+        }
       }
     }
+
+    loadData();
   }, [router]);
 
   const getDayStatus = (dayNum) => {
@@ -62,11 +66,9 @@ export default function DashboardPage() {
     router.push(`/dia/${dayNum}`);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('demo_user');
-    localStorage.removeItem('completed_days');
-    localStorage.removeItem('connection_scores');
-    router.push('/');
+  const handleLogout = async () => {
+    await signOutUser();
+    router.push('/login');
   };
 
   const progressPercent = (completedDays.length / 30) * 100;

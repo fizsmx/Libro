@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import programData from '@/data/program.json';
 
+import { getCurrentUser } from '@/lib/supabase-auth';
+
 export default function ReportePage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
@@ -13,12 +15,13 @@ export default function ReportePage() {
   const [reflections, setReflections] = useState({});
 
   useEffect(() => {
-    const demoUser = localStorage.getItem('demo_user');
-    if (!demoUser) { router.push('/login'); return; }
-    setUser(JSON.parse(demoUser));
+    async function initUser() {
+      const currentUser = await getCurrentUser();
+      if (!currentUser) { router.push('/login'); return; }
+      setUser(currentUser);
 
-    setCompletedDays(JSON.parse(localStorage.getItem('completed_days') || '[]'));
-    setScores(JSON.parse(localStorage.getItem('connection_scores') || '{}'));
+      setCompletedDays(JSON.parse(localStorage.getItem('completed_days') || '[]'));
+      setScores(JSON.parse(localStorage.getItem('connection_scores') || '{}'));
 
     // Load all reflections
     const allReflections = {};
@@ -27,7 +30,9 @@ export default function ReportePage() {
       if (r) allReflections[i] = JSON.parse(r);
     }
     setReflections(allReflections);
-  }, [router]);
+  }
+  initUser();
+}, [router]);
 
   if (!user) return null;
 
