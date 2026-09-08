@@ -25,7 +25,7 @@ export default function ReportePage() {
 
     // Load all reflections
     const allReflections = {};
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 14; i++) {
       const r = localStorage.getItem(`reflection_day_${i}`);
       if (r) allReflections[i] = JSON.parse(r);
     }
@@ -37,7 +37,7 @@ export default function ReportePage() {
   if (!user) return null;
 
   const totalCompleted = completedDays.length;
-  const percentComplete = Math.round((totalCompleted / 30) * 100);
+  const percentComplete = Math.round((totalCompleted / 14) * 100);
   const scoreValues = Object.values(scores).map(Number);
   const avgScore = scoreValues.length > 0
     ? (scoreValues.reduce((a, b) => a + b, 0) / scoreValues.length).toFixed(1)
@@ -60,7 +60,7 @@ export default function ReportePage() {
 
   const handleExportCSV = () => {
     let csv = 'Día,Tema,Conexión,Reflexión - Cómo me sentí,Reflexión - Qué aprendí,Reflexión - Qué quiero mejorar\n';
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 14; i++) {
       const dia = programData.dias.find(d => d.numero === i);
       const score = scores[i] || '';
       const ref = reflections[i] || {};
@@ -86,7 +86,7 @@ export default function ReportePage() {
     <>
       <header className="header">
         <div className="header-inner">
-          <Link href="/dashboard" className="header-logo">💕 <span>30 Días</span></Link>
+          <Link href="/dashboard" className="header-logo">💕 <span>14 Días</span></Link>
           <nav className="header-nav">
             <Link href="/dashboard">Programa</Link>
             <Link href="/progreso">Progreso</Link>
@@ -106,7 +106,7 @@ export default function ReportePage() {
                 Reporte Final
               </h1>
               <p style={{ color: 'var(--color-text-secondary)', maxWidth: '500px', margin: '0 auto' }}>
-                Tu resumen completo del programa 30 Días Para Reconectar
+                Tu resumen completo del programa 14 Días Para Reconectar
               </p>
             </div>
 
@@ -270,7 +270,7 @@ export default function ReportePage() {
       </main>
 
       <footer className="footer">
-        <p>© 2024 30 Días Para Reconectar</p>
+        <p>© 2025 14 Días Para Reconectar</p>
       </footer>
     </>
   );

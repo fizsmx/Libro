@@ -32,7 +32,7 @@ export default function ActivarPage() {
     setLoading(true);
     setMessage(null);
 
-    // Demo mode: accept any code starting with "30DIAS"
+    // Demo mode: accept any code starting with "14DIAS"
     const trimmed = codigo.trim().toUpperCase();
 
     if (trimmed.length < 6) {
@@ -52,13 +52,13 @@ export default function ActivarPage() {
     }
 
     // Accept real activated code or valid prefix
-    if (activated || trimmed.startsWith('30') || trimmed.startsWith('DEMO') || trimmed.startsWith('FREE')) {
+    if (activated || trimmed.startsWith('14') || trimmed.startsWith('DEMO') || trimmed.startsWith('FREE')) {
       const demoUser = JSON.parse(localStorage.getItem('demo_user') || '{}');
       demoUser.tiene_acceso_completo = true;
       demoUser.codigo_usado = trimmed;
       localStorage.setItem('demo_user', JSON.stringify(demoUser));
       setHasAccess(true);
-      setMessage({ type: 'success', text: '🎉 ¡Código activado! Ahora tienes acceso a los 30 días completos.' });
+      setMessage({ type: 'success', text: '🎉 ¡Código activado! Ahora tienes acceso a los 14 días completos.' });
     } else {
       setMessage({ type: 'error', text: 'Código no válido o ya utilizado. Verifica e intenta de nuevo.' });
     }
@@ -70,7 +70,7 @@ export default function ActivarPage() {
     <>
       <header className="header">
         <div className="header-inner">
-          <Link href="/dashboard" className="header-logo">💕 <span>30 Días</span></Link>
+          <Link href="/dashboard" className="header-logo">💕 <span>14 Días</span></Link>
           <nav className="header-nav">
             <Link href="/dashboard">Programa</Link>
             <Link href="/progreso">Progreso</Link>
@@ -90,7 +90,7 @@ export default function ActivarPage() {
                 ¡Acceso Activado!
               </h2>
               <p className="auth-subtitle">
-                Ya tienes acceso completo a los 30 días del programa.
+                Ya tienes acceso completo a los 14 días del programa.
               </p>
               <Link href="/dashboard" className="btn btn-primary btn-lg mt-lg">
                 📘 Ir al Programa
@@ -100,7 +100,7 @@ export default function ActivarPage() {
             <>
               <h2 className="auth-title">Activar Código de Acceso</h2>
               <p className="auth-subtitle">
-                Ingresa tu código para desbloquear los 30 días completos del programa
+                Ingresa tu código para desbloquear los 14 días completos del programa
               </p>
 
               {message && (
@@ -129,7 +129,7 @@ export default function ActivarPage() {
                     id="codigo"
                     type="text"
                     className="input"
-                    placeholder="Ej: 30DIAS-XXXX"
+                    placeholder="Ej: 14DIAS-XXXX"
                     value={codigo}
                     onChange={(e) => setCodigo(e.target.value)}
                     style={{ textAlign: 'center', fontSize: '1.2rem', letterSpacing: '2px', textTransform: 'uppercase' }}
@@ -158,11 +158,11 @@ export default function ActivarPage() {
                   ¿No tienes código?
                 </h4>
                 <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)' }}>
-                  Obtén acceso completo a los 30 días por solo <strong style={{ color: 'var(--color-accent)' }}>70 Bs</strong>.
-                  Incluye cuadernillo, libro, chatbot, podcast y video.
+                  Obtén acceso completo a los 14 días por solo <strong style={{ color: 'var(--color-accent)' }}>70 Bs</strong>.
+                  Incluye programa completo + análisis IA diario.
                 </p>
                 <a
-                  href="https://wa.me/59176419099?text=Hola%2C%20quiero%20comprar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20programa%2030%20D%C3%ADas%20Para%20Reconectar%20%F0%9F%93%98"
+                  href="https://wa.me/59176419099?text=Hola%2C%20quiero%20comprar%20mi%20código%20de%20acceso%20para%20el%20programa%2014%20Días%20Para%20Reconectar%20💕"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary w-full"

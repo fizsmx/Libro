@@ -3,12 +3,12 @@ import ChatBot from '@/components/ChatBot';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export const metadata = {
-  title: '30 Días Para Reconectar — Programa de Terapia de Pareja',
-  description: 'Un programa de 30 días diseñado para que tú y tu pareja trabajen juntos en fortalecer su conexión emocional a través de conversaciones guiadas, reflexiones y ejercicios prácticos.',
-  keywords: 'terapia de pareja, relaciones, conexión emocional, cuadernillo de parejas, programa 30 días',
+  title: '14 Días Para Reconectar — Programa de Terapia de Pareja',
+  description: 'Un programa de 14 días diseñado para que tú y tu pareja trabajen juntos en fortalecer su conexión emocional a través de conversaciones guiadas, reflexiones profundas y análisis IA personalizado.',
+  keywords: 'terapia de pareja, relaciones, conexión emocional, cuadernillo de parejas, programa 14 días, análisis IA parejas',
   openGraph: {
-    title: '30 Días Para Reconectar',
-    description: 'Fortalece tu relación con 30 días de conversaciones guiadas',
+    title: '14 Días Para Reconectar',
+    description: 'Fortalece tu relación con 14 días de conversaciones guiadas y análisis IA',
     type: 'website',
   },
 };

@@ -50,7 +50,7 @@ export default function ProgresoPage() {
     <>
       <header className="header">
         <div className="header-inner">
-          <Link href="/dashboard" className="header-logo">💕 <span>30 Días</span></Link>
+          <Link href="/dashboard" className="header-logo">💕 <span>14 Días</span></Link>
           <nav className="header-nav">
             <Link href="/dashboard">Programa</Link>
             <Link href="/progreso" className="active">Progreso</Link>
@@ -64,7 +64,7 @@ export default function ProgresoPage() {
             <Link href="/dashboard" className="page-back">← Volver al programa</Link>
             <h1 style={{ marginTop: 'var(--space-lg)' }}>📊 Tu Progreso</h1>
             <p style={{ color: 'var(--color-text-secondary)' }}>
-              Visualiza tu evolución durante el programa de 30 días
+              Visualiza tu evolución durante el programa de 14 días
             </p>
           </div>
 
@@ -90,7 +90,7 @@ export default function ProgresoPage() {
             </div>
             <div className="glass-card text-center">
               <div style={{ fontSize: '2.5rem', fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--color-info)' }}>
-                {Math.round((completedDays.length / 30) * 100)}%
+                {Math.round((completedDays.length / 14) * 100)}%
               </div>
               <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>Programa Completo</div>
             </div>
@@ -205,7 +205,7 @@ export default function ProgresoPage() {
       </main>
 
       <footer className="footer mt-2xl">
-        <p>© 2024 30 Días Para Reconectar</p>
+        <p>© 2025 14 Días Para Reconectar</p>
       </footer>
     </>
   );

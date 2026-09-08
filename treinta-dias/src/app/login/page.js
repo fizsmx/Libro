@@ -41,7 +41,7 @@ export default function LoginPage() {
         </div>
         <h2 className="auth-title">Bienvenido/a de vuelta</h2>
         <p className="auth-subtitle">
-          Inicia sesión para continuar tu programa de 30 días
+          Inicia sesión para continuar tu programa de 14 días
         </p>
 
         {error && (

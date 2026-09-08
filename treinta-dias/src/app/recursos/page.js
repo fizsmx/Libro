@@ -57,7 +57,7 @@ export default function RecursosPage() {
         { ep: 2, title: 'Los 5 lenguajes del amor en la práctica', duration: '30 min' },
         { ep: 3, title: 'Cómo pelear de forma constructiva', duration: '22 min' },
         { ep: 4, title: 'Intimidad emocional vs. intimidad física', duration: '28 min' },
-        { ep: 5, title: 'Mantener la conexión después de los 30 días', duration: '20 min' },
+        { ep: 5, title: 'Mantener la conexión después de los 14 días', duration: '20 min' },
       ],
     },
     {
@@ -84,7 +84,7 @@ export default function RecursosPage() {
     <>
       <header className="header">
         <div className="header-inner">
-          <Link href="/dashboard" className="header-logo">💕 <span>30 Días</span></Link>
+          <Link href="/dashboard" className="header-logo">💕 <span>14 Días</span></Link>
           <nav className="header-nav">
             <Link href="/dashboard">Programa</Link>
             <Link href="/progreso">Progreso</Link>
@@ -99,7 +99,7 @@ export default function RecursosPage() {
             <Link href="/dashboard" className="page-back">← Volver al programa</Link>
             <h1 style={{ marginTop: 'var(--space-lg)' }}>📚 Recursos Incluidos</h1>
             <p style={{ color: 'var(--color-text-secondary)', maxWidth: '600px' }}>
-              Todo el material complementario incluido con tu programa de 30 días
+              Todo el material complementario incluido con tu programa de 14 días
             </p>
           </div>
 
@@ -238,7 +238,7 @@ export default function RecursosPage() {
       </main>
 
       <footer className="footer">
-        <p>© 2024 30 Días Para Reconectar</p>
+        <p>© 2025 14 Días Para Reconectar</p>
       </footer>
     </>
   );

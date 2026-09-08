@@ -5,19 +5,19 @@ import { useState, useRef, useEffect } from 'react';
 const FAQ_RESPONSES = {
   greetings: {
     patterns: ['hola', 'buenas', 'hey', 'hi', 'buenos dias', 'buenas tardes', 'buenas noches'],
-    response: '¡Hola! 💕 Soy tu asistente del programa *30 Días Para Reconectar*. Estoy aquí para ayudarte con dudas sobre las preguntas, orientación sobre los ejercicios y tips para fortalecer tu relación. ¿En qué puedo ayudarte?'
+    response: '¡Hola! 💕 Soy tu asistente del programa *14 Días Para Reconectar*. Estoy aquí para ayudarte con dudas sobre las preguntas, orientación sobre los ejercicios y tips para fortalecer tu relación. ¿En qué puedo ayudarte?'
   },
   que_es: {
     patterns: ['que es', 'de que se trata', 'como funciona', 'explicame', 'para que sirve'],
-    response: '📘 **30 Días Para Reconectar** es un programa interactivo de terapia de pareja. Cada día, tú y tu pareja responden 10 preguntas de reflexión sobre temas como comunicación, confianza, intimidad y más. El objetivo es crear un espacio seguro para conversaciones profundas y fortalecer su conexión emocional durante 30 días consecutivos.'
+    response: '📘 **14 Días Para Reconectar** es un programa interactivo de terapia de pareja. Cada día, tú y tu pareja responden 10 preguntas de reflexión sobre temas como comunicación, confianza, intimidad y más. El objetivo es crear un espacio seguro para conversaciones profundas y fortalecer su conexión emocional durante 14 días consecutivos.'
   },
   como_empezar: {
     patterns: ['como empiezo', 'como inicio', 'por donde empiezo', 'primer paso', 'empezar'],
-    response: '🚀 Para empezar:\n\n1. **Regístrate** con tu correo\n2. **Invita a tu pareja** compartiendo tu código de invitación\n3. **Completa el Día 1** (es gratis)\n4. **Activa tu código** de acceso para los 30 días completos\n\nEl Día 1 es completamente gratuito para que pruebes el programa. 💕'
+    response: '🚀 Para empezar:\n\n1. **Regístrate** con tu correo\n2. **Invita a tu pareja** compartiendo tu código de invitación\n3. **Completa el Día 1** (es gratis)\n4. **Activa tu código** de acceso para los 14 días completos\n\nEl Día 1 es completamente gratuito para que pruebes el programa. 💕'
   },
   precio: {
     patterns: ['precio', 'cuanto cuesta', 'costo', 'pagar', 'gratis', 'cobro', 'bolivianos', 'bs'],
-    response: '💰 El programa tiene un **precio promocional de 70 Bs** (pago único). Incluye:\n\n✅ 30 días de programa interactivo\n✅ Cuadernillo de terapia de pareja (PDF)\n✅ Libro: Conversaciones difíciles (PDF)\n✅ Este chatbot 24/7\n✅ Podcast y video explicativo\n\n📲 Para comprar, escribe al WhatsApp: **+591 76419099**'
+    response: '💰 El programa tiene un **precio promocional de 70 Bs** (pago único). Incluye:\n\n✅ 14 días de programa interactivo\n✅ Cuadernillo de terapia de pareja (PDF)\n✅ Libro: Conversaciones difíciles (PDF)\n✅ Este chatbot 24/7\n✅ Podcast y video explicativo\n\n📲 Para comprar, escribe al WhatsApp: **+591 76419099**'
   },
   pareja: {
     patterns: ['mi pareja', 'invitar', 'vincular', 'juntos', 'conectar con', 'otro usuario', 'codigo invitacion'],
@@ -29,7 +29,7 @@ const FAQ_RESPONSES = {
   },
   conexion: {
     patterns: ['conexion', 'puntuacion', 'nivel', 'escala', 'medidor', 'como me siento'],
-    response: '📊 Al final de cada día, evalúas tu **nivel de conexión** del 1 al 10:\n\n- **1-3:** Desconectado/a (rojo)\n- **4-6:** En proceso (amarillo)\n- **7-10:** Conectado/a (verde)\n\nEsto te permite ver tu evolución a lo largo de los 30 días. No hay respuestas "correctas" — es tu percepción personal de cómo te sientes con tu pareja ese día.'
+    response: '📊 Al final de cada día, evalúas tu **nivel de conexión** del 1 al 10:\n\n- **1-3:** Desconectado/a (rojo)\n- **4-6:** En proceso (amarillo)\n- **7-10:** Conectado/a (verde)\n\nEsto te permite ver tu evolución a lo largo de los 14 días. No hay respuestas "correctas" — es tu percepción personal de cómo te sientes con tu pareja ese día.'
   },
   dificil: {
     patterns: ['dificil', 'no quiere', 'pelea', 'conflicto', 'enojad', 'problema', 'crisis', 'separar', 'divorcio'],
@@ -37,7 +37,7 @@ const FAQ_RESPONSES = {
   },
   temas: {
     patterns: ['temas', 'que preguntas', 'de que hablan', 'contenido', 'categorias'],
-    response: '📋 Los 30 días cubren estos temas progresivos:\n\n**Semana 1:** Reconexión, Comunicación, Apreciación, Expectativas, Escucha activa\n**Semana 2:** Confianza, Intimidad emocional, Conflictos, Roles, Lenguajes del amor\n**Semana 3:** Perdón, Metas compartidas, Familia, Finanzas, Estrés\n**Semana 4:** Creatividad, Sexualidad, Espiritualidad, Autoconocimiento, Resiliencia\n**Día 26-30:** Gratitud, Vulnerabilidad, Renovación, Futuro, Celebración'
+    response: '📋 Los 14 días cubren estos temas progresivos:\n\n**Semana 1:** Reconexión, Comunicación, Apreciación, Expectativas, Escucha activa\n**Semana 2:** Confianza, Intimidad emocional, Conflictos, Roles, Lenguajes del amor\n**Semana 3:** Perdón, Metas compartidas, Familia, Finanzas, Estrés\n**Semana 4:** Creatividad, Sexualidad, Espiritualidad, Autoconocimiento, Resiliencia\n**Día 26-30:** Gratitud, Vulnerabilidad, Renovación, Futuro, Celebración'
   },
   reflexion: {
     patterns: ['reflexion', 'como me senti', 'que aprendi', 'diario', 'journaling'],
@@ -49,11 +49,11 @@ const FAQ_RESPONSES = {
   },
   codigo: {
     patterns: ['codigo', 'activar', 'desbloquear', 'acceso completo', 'comprar'],
-    response: '🔑 Para activar tu código de acceso:\n\n1. Ve a **"Activar Código"** en el menú\n2. Ingresa el código que recibiste\n3. ¡Listo! Se desbloquean los 30 días\n\n¿No tienes código? Escribe al WhatsApp **+591 76419099** para comprarlo por solo **70 Bs**.'
+    response: '🔑 Para activar tu código de acceso:\n\n1. Ve a **"Activar Código"** en el menú\n2. Ingresa el código que recibiste\n3. ¡Listo! Se desbloquean los 14 días\n\n¿No tienes código? Escribe al WhatsApp **+591 76419099** para comprarlo por solo **70 Bs**.'
   },
   completar: {
     patterns: ['completar', 'terminar', 'acabar', 'final', 'dia 30', 'termine'],
-    response: '🎉 Al completar los 30 días recibirás:\n\n- **Resumen completo** de tu experiencia\n- **Gráfico de evolución** de tu conexión emocional\n- **Tus reflexiones** más significativas\n\n¡Celebren juntos este logro! Completar el programa demuestra un compromiso real con su relación. 💕'
+    response: '🎉 Al completar los 14 días recibirás:\n\n- **Resumen completo** de tu experiencia\n- **Gráfico de evolución** de tu conexión emocional\n- **Tus reflexiones** más significativas\n\n¡Celebren juntos este logro! Completar el programa demuestra un compromiso real con su relación. 💕'
   },
   profesional: {
     patterns: ['terapeuta', 'psicologo', 'profesional', 'terapia real', 'reemplaza'],
@@ -67,7 +67,7 @@ const FAQ_RESPONSES = {
 
 const WELCOME_MESSAGE = {
   role: 'assistant',
-  content: '¡Hola! 💕 Soy tu asistente del programa **30 Días Para Reconectar**. Puedo ayudarte con:\n\n📘 Cómo funciona el programa\n💰 Precios y activación\n👑 Vincular a tu pareja\n🔒 Privacidad de respuestas\n📊 Niveles de conexión\n💙 Tips para conversaciones difíciles\n🤖 **Reflexión IA** — Pide una reflexión personalizada\n\n¿En qué puedo ayudarte?'
+  content: '¡Hola! 💕 Soy tu asistente del programa **14 Días Para Reconectar**. Puedo ayudarte con:\n\n📘 Cómo funciona el programa\n💰 Precios y activación\n👑 Vincular a tu pareja\n🔒 Privacidad de respuestas\n📊 Niveles de conexión\n💙 Tips para conversaciones difíciles\n🤖 **Reflexión IA** — Pide una reflexión personalizada\n\n¿En qué puedo ayudarte?'
 };
 
 function findResponse(message) {

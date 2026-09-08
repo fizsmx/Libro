@@ -50,14 +50,14 @@ export default function AdminPage() {
 
     // Count answered questions
     let totalAnswered = 0;
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 14; i++) {
       const a = localStorage.getItem(`answers_day_${i}`);
       if (a) totalAnswered += Object.keys(JSON.parse(a)).length;
     }
 
     // Count reflections
     let totalReflections = 0;
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 14; i++) {
       if (localStorage.getItem(`reflection_day_${i}`)) totalReflections++;
     }
 
@@ -77,7 +77,7 @@ export default function AdminPage() {
   const generateCodes = () => {
     const newCodes = [];
     for (let i = 0; i < newCodesCount; i++) {
-      const code = '30DIAS-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+      const code = '14DIAS-' + Math.random().toString(36).substr(2, 6).toUpperCase();
       newCodes.push({
         id: Date.now() + i,
         codigo: code,
@@ -499,7 +499,7 @@ Un material práctico para trabajar juntos temas importantes de la relación, re
 🎁 POR PROMOCIÓN: SOLO 70 Bs
 
 Además, recibirás:
-✅ Cuadernillo de Terapia de Pareja – 30 días
+✅ Cuadernillo de Terapia de Pareja – 14 días
 ✅ Libro: Cómo manejar conversaciones difíciles
 ✅ 🤖 Chatbot especializado
 ✅ 🎧 Podcast sobre terapia y conexión de pareja
@@ -510,7 +510,7 @@ Además, recibirás:
               <button
                 className="btn btn-primary mt-md"
                 onClick={() => {
-                  navigator.clipboard.writeText(`📘 CUADERNILLO DE TERAPIA DE PAREJA – PROGRAMA DE 30 DÍAS\n\nUn material práctico para trabajar juntos temas importantes de la relación, reflexionar, conversar y fortalecer la conexión.\n\n🎁 POR PROMOCIÓN: SOLO 70 Bs\n\nAdemás, recibirás:\n✅ Cuadernillo de Terapia de Pareja – 30 días\n✅ Libro: Cómo manejar conversaciones difíciles\n✅ 🤖 Chatbot especializado\n✅ 🎧 Podcast sobre terapia y conexión de pareja\n✅ 🎥 Video explicativo\n\n📲 Escríbeme "QUIERO EL CUADERNILLO" al 76419099`);
+                  navigator.clipboard.writeText(`📘 CUADERNILLO DE TERAPIA DE PAREJA – PROGRAMA DE 30 DÍAS\n\nUn material práctico para trabajar juntos temas importantes de la relación, reflexionar, conversar y fortalecer la conexión.\n\n🎁 POR PROMOCIÓN: SOLO 70 Bs\n\nAdemás, recibirás:\n✅ Cuadernillo de Terapia de Pareja – 14 días\n✅ Libro: Cómo manejar conversaciones difíciles\n✅ 🤖 Chatbot especializado\n✅ 🎧 Podcast sobre terapia y conexión de pareja\n✅ 🎥 Video explicativo\n\n📲 Escríbeme "QUIERO EL CUADERNILLO" al 76419099`);
                   showToast('Texto copiado', 'success');
                 }}
               >

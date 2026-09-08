@@ -16,7 +16,7 @@ export default function HomePage() {
       <header className="header">
         <div className="header-inner">
           <Link href="/" className="header-logo">
-            💕 <span>30 Días</span>
+            💕 <span>14 Días</span>
           </Link>
           <nav className="header-nav">
             <a href="#como-funciona">Cómo Funciona</a>
@@ -36,15 +36,15 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-content">
           <div className="hero-badge">
-            ✨ Programa de 30 Días · Día 1 Gratis
+            ✨ Programa de 14 Días · Día 1 Gratis
           </div>
           <h1 className="hero-title">
-            30 Días Para <em>Reconectar</em>
+            14 Días Para <em>Reconectar</em>
           </h1>
           <p className="hero-subtitle">
-            Un programa diseñado para que tú y tu pareja trabajen juntos en fortalecer
-            su conexión emocional a través de conversaciones guiadas, reflexiones
-            profundas y ejercicios prácticos.
+            ¿Sienten que su relación necesita atención? Este programa de 14 días 
+            les guiará para fortalecer su conexión emocional con conversaciones 
+            guiadas, reflexiones profundas y análisis IA personalizado.
           </p>
           <div className="hero-actions">
             <Link href="/registro" className="btn btn-primary btn-lg">
@@ -56,18 +56,42 @@ export default function HomePage() {
           </div>
           <div className="hero-stats">
             <div className="hero-stat">
-              <div className="hero-stat-value">30</div>
+              <div className="hero-stat-value">14</div>
               <div className="hero-stat-label">Días</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value">300</div>
+              <div className="hero-stat-value">140</div>
               <div className="hero-stat-label">Preguntas</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value">10</div>
-              <div className="hero-stat-label">Por Día</div>
+              <div className="hero-stat-value">🧠</div>
+              <div className="hero-stat-label">IA Incluida</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Gancho emocional */}
+      <section className="section" style={{ textAlign: 'center', padding: 'var(--space-2xl) 0' }}>
+        <div className="container">
+          <h2 style={{ fontSize: 'clamp(1.3rem, 4vw, 2rem)', maxWidth: '700px', margin: '0 auto var(--space-lg)' }}>
+            💔 ¿Tienen una crisis en su relación? <br />
+            <span style={{ color: 'var(--color-primary-light)' }}>Tenemos la solución.</span>
+          </h2>
+          <p style={{ maxWidth: '600px', margin: '0 auto var(--space-xl)', color: 'var(--color-text-secondary)' }}>
+            Un solo dispositivo. Juntos, en el mismo lugar. 
+            Responden por turnos las mismas preguntas y luego descubren 
+            qué piensa el otro. La IA analiza sus respuestas y les da retroalimentación real.
+          </p>
+          <a
+            href="https://wa.me/59176419099?text=Hola%2C%20quiero%20información%20sobre%2014%20Días%20Para%20Reconectar%20💕"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-accent btn-lg"
+            style={{ background: '#25D366', borderColor: '#25D366' }}
+          >
+            📲 Escríbenos al WhatsApp
+          </a>
         </div>
       </section>
 
@@ -76,56 +100,55 @@ export default function HomePage() {
         <div className="container">
           <h2 className="text-center mb-xl">¿Cómo Funciona?</h2>
           <p className="text-center mb-2xl" style={{ maxWidth: '600px', margin: '0 auto var(--space-2xl)' }}>
-            Un proceso simple y guiado para que ambos se comprometan a trabajar
-            en su relación durante 30 días consecutivos.
+            Un proceso simple: un dispositivo, dos personas, respuestas por turnos.
           </p>
           <div className="features-grid stagger-children">
             <div className="feature-card">
               <div className="feature-icon">📝</div>
-              <h3 className="feature-title">1. Regístrate</h3>
+              <h3 className="feature-title">1. Regístrense</h3>
               <p className="feature-desc">
-                Crea tu cuenta y envía el código de invitación a tu pareja para
-                que ambos estén conectados.
+                Creen una cuenta de pareja. Solo necesitan un dispositivo 
+                para los dos — celular, tablet o computadora.
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">💬</div>
-              <h3 className="feature-title">2. Responde</h3>
+              <div className="feature-icon">👤</div>
+              <h3 className="feature-title">2. Persona 1 Responde</h3>
               <p className="feature-desc">
-                Cada día recibes 10 preguntas de reflexión. Responde de forma
-                privada antes de ver las respuestas de tu pareja.
+                Cada día hay 10 preguntas. Persona 1 responde primero de forma 
+                privada, sin que Persona 2 vea sus respuestas.
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🤝</div>
-              <h3 className="feature-title">3. Comparte</h3>
+              <div className="feature-icon">📱</div>
+              <h3 className="feature-title">3. Pasa el Dispositivo</h3>
               <p className="feature-desc">
-                Cuando ambos terminan, se desbloquean las respuestas para que
-                lean, reflexionen y conversen juntos.
+                Al terminar, pasan el dispositivo a la otra persona. 
+                Las respuestas de Persona 1 están ocultas.
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">📊</div>
-              <h3 className="feature-title">4. Mide tu Progreso</h3>
+              <div className="feature-icon">💑</div>
+              <h3 className="feature-title">4. Persona 2 Responde</h3>
               <p className="feature-desc">
-                Evalúa tu nivel de conexión diariamente y observa cómo crece
-                a lo largo de los 30 días.
+                Persona 2 responde las mismas preguntas. Al guardar, 
+                ambas respuestas se revelan lado a lado.
               </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">🧠</div>
-              <h3 className="feature-title">5. Reflexiona</h3>
+              <h3 className="feature-title">5. Análisis IA</h3>
               <p className="feature-desc">
-                Al final de cada día, responde: ¿cómo me sentí?, ¿qué aprendí?,
-                ¿qué quiero mejorar?
+                La IA compara sus respuestas y genera: conclusión, fortalezas, 
+                áreas de trabajo, tips, retos y un semáforo 🟢🟡🔴
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🎉</div>
-              <h3 className="feature-title">6. Celebra</h3>
+              <div className="feature-icon">🏆</div>
+              <h3 className="feature-title">6. Celebren</h3>
               <p className="feature-desc">
-                Al completar los 30 días, recibe un resumen de tu experiencia
-                y celebra el camino recorrido juntos.
+                Al completar los 14 días, reciban un reporte final con la 
+                evolución de su relación y logros alcanzados.
               </p>
             </div>
           </div>
@@ -139,19 +162,20 @@ export default function HomePage() {
           <div className="features-grid stagger-children">
             <div className="feature-card">
               <div className="feature-icon">📘</div>
-              <h3 className="feature-title">Cuadernillo de 30 Días</h3>
+              <h3 className="feature-title">Programa de 14 Días</h3>
               <p className="feature-desc">
-                300 preguntas diseñadas por expertos en terapia de pareja,
+                140 preguntas diseñadas por expertos en terapia de pareja,
                 organizadas en temas progresivos desde la reconexión hasta
                 la celebración.
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">📖</div>
-              <h3 className="feature-title">Libro: Conversaciones Difíciles</h3>
+              <div className="feature-icon">🧠</div>
+              <h3 className="feature-title">Análisis IA Diario</h3>
               <p className="feature-desc">
-                Guía complementaria sobre cómo manejar las conversaciones
-                más difíciles en la relación con empatía y claridad.
+                Cada día, la IA analiza las respuestas de ambos y genera 
+                conclusiones, fortalezas, áreas de mejora y un semáforo 
+                de estado de la relación.
               </p>
             </div>
             <div className="feature-card">
@@ -163,27 +187,27 @@ export default function HomePage() {
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🎧</div>
-              <h3 className="feature-title">Podcast</h3>
+              <div className="feature-icon">🚦</div>
+              <h3 className="feature-title">Sistema de Semáforo</h3>
               <p className="feature-desc">
-                Episodios sobre terapia de pareja, comunicación efectiva
-                y fortalecimiento de la conexión emocional.
-              </p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🎥</div>
-              <h3 className="feature-title">Video Explicativo</h3>
-              <p className="feature-desc">
-                Video guía sobre cómo aprovechar al máximo el cuadernillo
-                y cómo abordar cada conversación diaria.
+                Indicadores visuales 🟢🟡🔴 que muestran el estado de 
+                diferentes áreas de la relación día a día.
               </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">📊</div>
-              <h3 className="feature-title">Seguimiento de Progreso</h3>
+              <h3 className="feature-title">Reporte Final</h3>
               <p className="feature-desc">
-                Gráficos y métricas visuales que muestran la evolución
-                de su conexión emocional durante los 30 días.
+                Al completar los 14 días, un resumen completo con la 
+                evolución, logros y recomendaciones personalizadas.
+              </p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">🔒</div>
+              <h3 className="feature-title">100% Privado</h3>
+              <p className="feature-desc">
+                Sus respuestas son privadas. Nadie más que ustedes como 
+                pareja puede ver lo que escriben. Ni siquiera nosotros.
               </p>
             </div>
           </div>
@@ -200,15 +224,14 @@ export default function HomePage() {
                 🔥 Promoción por tiempo limitado
               </p>
               <div className="price-value">70 Bs</div>
-              <p className="price-currency">Pago único · Acceso completo</p>
+              <p className="price-currency">Pago único · Acceso completo a los 14 días</p>
               <ul className="price-list">
-                <li>Cuadernillo de Terapia de Pareja — 30 Días (PDF)</li>
-                <li>Libro: Cómo Manejar Conversaciones Difíciles (PDF)</li>
+                <li>Programa completo de 14 días (140 preguntas)</li>
+                <li>Análisis IA diario con semáforo</li>
                 <li>Chatbot especializado en terapia de pareja</li>
-                <li>Podcast sobre terapia y conexión de pareja</li>
-                <li>Video explicativo del programa</li>
-                <li>Acceso a los 30 días del programa interactivo</li>
-                <li>Seguimiento y métricas de progreso</li>
+                <li>Reporte final personalizado</li>
+                <li>Día 1 completamente gratis para probar</li>
+                <li>Un solo pago, sin suscripciones</li>
               </ul>
               <Link href="/registro" className="btn btn-accent btn-lg w-full" style={{ marginTop: 'var(--space-lg)' }}>
                 🚀 Comenzar Ahora
@@ -216,7 +239,7 @@ export default function HomePage() {
               <p className="mt-lg" style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
                 📲 También puedes escribirnos al WhatsApp:{' '}
                 <a
-                  href="https://wa.me/59176419099?text=Hola%2C%20quiero%20activar%20mi%20c%C3%B3digo%20de%20acceso%20para%20el%20programa%2030%20D%C3%ADas%20Para%20Reconectar%20%F0%9F%93%98"
+                  href="https://wa.me/59176419099?text=Hola%2C%20quiero%20activar%20mi%20código%20de%20acceso%20para%20el%20programa%2014%20Días%20Para%20Reconectar%20💕"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: 'var(--color-success)' }}
@@ -236,7 +259,7 @@ export default function HomePage() {
             💔 ¿Cansados de intentar y que nada resulte?
           </h2>
           <p style={{ maxWidth: '600px', margin: '0 auto var(--space-xl)', fontSize: '1.1rem' }}>
-            Este programa no es una sesión más de terapia. Es un compromiso de 30 días
+            Este programa no es una sesión más de terapia. Es un compromiso de 14 días
             para trabajar de forma <strong>consciente</strong> en su relación.
             Paso a paso, pregunta a pregunta, juntos.
           </p>
@@ -248,7 +271,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2024 30 Días Para Reconectar · Todos los derechos reservados</p>
+        <p>© 2025 14 Días Para Reconectar · Todos los derechos reservados</p>
         <p className="mt-sm" style={{ fontSize: '0.8rem' }}>
           📲 WhatsApp:{' '}
           <a

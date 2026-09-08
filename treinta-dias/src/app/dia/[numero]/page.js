@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import programData from '@/data/program.json';
 import Celebration from '@/components/Celebration';
+import TurnHandler from '@/components/TurnHandler';
+import AnalisisIA from '@/components/AnalisisIA';
 import { getCurrentUser } from '@/lib/supabase-auth';
 
 export default function DiaPage({ params }) {
@@ -13,17 +15,12 @@ export default function DiaPage({ params }) {
   const router = useRouter();
 
   const [user, setUser] = useState(null);
-  const [answers, setAnswers] = useState({});
-  const [connectionScore, setConnectionScore] = useState(5);
-  const [reflection, setReflection] = useState({ como_me_senti: '', que_aprendi: '', que_quiero_mejorar: '' });
-  const [saved, setSaved] = useState({});
-  const [showReflection, setShowReflection] = useState(false);
+  const [allAnswers, setAllAnswers] = useState({}); // {0: {persona1: '...', persona2: '...'}, 1: ...}
   const [dayCompleted, setDayCompleted] = useState(false);
   const [toast, setToast] = useState(null);
   const [showCelebration, setShowCelebration] = useState(false);
-  const [partnerLinked, setPartnerLinked] = useState(false);
-  const [partnerAnswers, setPartnerAnswers] = useState({});
-  const [showPartner, setShowPartner] = useState({});
+  const [analisis, setAnalisis] = useState(null);
+  const [loadingAnalisis, setLoadingAnalisis] = useState(false);
 
   const dia = programData.dias.find(d => d.numero === dayNum);
 
@@ -42,64 +39,25 @@ export default function DiaPage({ params }) {
         return;
       }
 
-    // Check partner
-    const partner = localStorage.getItem('partner_info');
-    if (partner) {
-      setPartnerLinked(true);
-      // In demo mode, simulate partner answers for completed questions
-      const simulated = {};
-      const savedAns = localStorage.getItem(`answers_day_${dayNum}`);
-      if (savedAns) {
-        const parsed = JSON.parse(savedAns);
-        Object.keys(parsed).forEach(key => {
-          // 70% chance partner has answered (demo simulation)
-          if (Math.random() > 0.3) {
-            const partnerResponses = [
-              'Creo que es importante que trabajemos juntos en esto.',
-              'Me hace reflexionar mucho sobre nuestra relación.',
-              'Siento que estamos avanzando en la dirección correcta.',
-              'A veces es difícil expresar lo que siento, pero lo intento.',
-              'Estoy agradecido/a por este espacio de diálogo.',
-              'Necesitamos más momentos como este.',
-              'Me siento escuchado/a cuando hacemos este ejercicio.',
-            ];
-            simulated[key] = partnerResponses[Math.floor(Math.random() * partnerResponses.length)];
-          }
-        });
+      // Load saved answers (new format: {questionIndex: {persona1, persona2}})
+      const savedAnswers = localStorage.getItem(`turns_day_${dayNum}`);
+      if (savedAnswers) {
+        setAllAnswers(JSON.parse(savedAnswers));
       }
-      setPartnerAnswers(simulated);
-    }
 
-    // Load saved answers
-    const savedAnswers = localStorage.getItem(`answers_day_${dayNum}`);
-    if (savedAnswers) {
-      const parsed = JSON.parse(savedAnswers);
-      setAnswers(parsed);
-      setSaved(Object.keys(parsed).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
-    }
+      // Check if day is completed
+      const completedDays = JSON.parse(localStorage.getItem('completed_days') || '[]');
+      setDayCompleted(completedDays.includes(dayNum));
 
-    // Load saved reflection
-    const savedReflection = localStorage.getItem(`reflection_day_${dayNum}`);
-    if (savedReflection) {
-      setReflection(JSON.parse(savedReflection));
-    }
-
-    // Load connection score
-    const savedScores = localStorage.getItem('connection_scores');
-    if (savedScores) {
-      const scores = JSON.parse(savedScores);
-      if (scores[dayNum]) {
-        setConnectionScore(scores[dayNum]);
+      // Load saved analysis
+      const savedAnalisis = localStorage.getItem(`analisis_day_${dayNum}`);
+      if (savedAnalisis) {
+        setAnalisis(JSON.parse(savedAnalisis));
       }
     }
 
-    // Check if day is completed
-    const completedDays = JSON.parse(localStorage.getItem('completed_days') || '[]');
-    setDayCompleted(completedDays.includes(dayNum));
-  }
-
-  loadDia();
-}, [dayNum, router]);
+    loadDia();
+  }, [dayNum, router]);
 
   if (!dia) {
     return (
@@ -117,33 +75,27 @@ export default function DiaPage({ params }) {
     );
   }
 
-  const handleAnswerChange = (index, value) => {
-    setAnswers(prev => ({ ...prev, [index]: value }));
+  const handleSaveAnswer = (questionIndex, persona, answer) => {
+    const updated = {
+      ...allAnswers,
+      [questionIndex]: {
+        ...(allAnswers[questionIndex] || {}),
+        [`persona${persona}`]: answer,
+      },
+    };
+    setAllAnswers(updated);
+    localStorage.setItem(`turns_day_${dayNum}`, JSON.stringify(updated));
+    showToastMsg(
+      persona === 1 ? '✓ Respuesta de Persona 1 guardada' : '✓ ¡Ambas respuestas guardadas!',
+      'success'
+    );
   };
 
-  const handleSaveAnswer = (index) => {
-    if (!answers[index] || answers[index].trim() === '') return;
-
-    const updatedAnswers = { ...answers, [index]: answers[index] };
-    localStorage.setItem(`answers_day_${dayNum}`, JSON.stringify(updatedAnswers));
-    setSaved(prev => ({ ...prev, [index]: true }));
-    showToastMsg('Respuesta guardada ✓', 'success');
+  const getCompletedCount = () => {
+    return Object.values(allAnswers).filter(a => a.persona1 && a.persona2).length;
   };
 
-  const handleSaveReflection = () => {
-    localStorage.setItem(`reflection_day_${dayNum}`, JSON.stringify(reflection));
-    showToastMsg('Reflexión guardada ✓', 'success');
-  };
-
-  const handleSaveConnectionScore = (score) => {
-    setConnectionScore(score);
-    const savedScores = JSON.parse(localStorage.getItem('connection_scores') || '{}');
-    savedScores[dayNum] = score;
-    localStorage.setItem('connection_scores', JSON.stringify(savedScores));
-    showToastMsg(`Nivel de conexión: ${score}/10`, 'success');
-  };
-
-  const handleCompleteDay = () => {
+  const handleCompleteDay = async () => {
     const completedDays = JSON.parse(localStorage.getItem('completed_days') || '[]');
     if (!completedDays.includes(dayNum)) {
       completedDays.push(dayNum);
@@ -152,15 +104,56 @@ export default function DiaPage({ params }) {
     setDayCompleted(true);
 
     // Check for milestones
-    if ([7, 15, 21, 30].includes(dayNum)) {
+    if ([7, 14].includes(dayNum)) {
       setShowCelebration(true);
     } else {
       showToastMsg('¡Día completado! 🎉', 'success');
     }
+
+    // Trigger AI analysis
+    await requestAnalisis();
   };
 
-  const togglePartnerAnswer = (index) => {
-    setShowPartner(prev => ({ ...prev, [index]: !prev[index] }));
+  const requestAnalisis = async () => {
+    setLoadingAnalisis(true);
+    try {
+      // Build responses array
+      const respuestas = dia.preguntas.map((p, i) => ({
+        pregunta: p.texto,
+        persona1: allAnswers[i]?.persona1 || '',
+        persona2: allAnswers[i]?.persona2 || '',
+      }));
+
+      // Build history from previous days
+      const historial = [];
+      for (let i = 1; i < dayNum; i++) {
+        const savedAnalisis = localStorage.getItem(`analisis_day_${i}`);
+        if (savedAnalisis) {
+          const parsed = JSON.parse(savedAnalisis);
+          historial.push({
+            dia: i,
+            semaforo: parsed.semaforo,
+            resumen: parsed.conclusion?.substring(0, 100),
+          });
+        }
+      }
+
+      const response = await fetch('/api/analisis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dia: dayNum, tema: dia.tema, respuestas, historial }),
+      });
+
+      const data = await response.json();
+      const result = data.analisis;
+      setAnalisis(result);
+      localStorage.setItem(`analisis_day_${dayNum}`, JSON.stringify(result));
+    } catch (error) {
+      console.error('Error requesting analysis:', error);
+      showToastMsg('Error al generar análisis IA', 'error');
+    } finally {
+      setLoadingAnalisis(false);
+    }
   };
 
   const showToastMsg = (message, type) => {
@@ -168,16 +161,15 @@ export default function DiaPage({ params }) {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const answeredCount = Object.keys(saved).length;
+  const completedCount = getCompletedCount();
   const totalQuestions = dia.preguntas.length;
-  const progressPercent = (answeredCount / totalQuestions) * 100;
+  const progressPercent = (completedCount / totalQuestions) * 100;
 
   const getQuestionTypeLabel = (tipo) => {
     const labels = {
       reflexion: '🪞 Reflexión',
       compartida: '💕 Compartida',
       profunda: '🌊 Profunda',
-      evaluacion: '📊 Evaluación',
       compromiso: '🤝 Compromiso',
     };
     return labels[tipo] || tipo;
@@ -193,7 +185,7 @@ export default function DiaPage({ params }) {
           dayNumber={dayNum}
           onClose={() => {
             setShowCelebration(false);
-            if (dayNum === 30) router.push('/reporte');
+            if (dayNum === 14) router.push('/reporte');
           }}
         />
       )}
@@ -202,7 +194,7 @@ export default function DiaPage({ params }) {
       <header className="header">
         <div className="header-inner">
           <Link href="/dashboard" className="header-logo">
-            💕 <span>30 Días</span>
+            💕 <span>14 Días</span>
           </Link>
           <nav className="header-nav">
             <Link href="/dashboard">Programa</Link>
@@ -235,23 +227,21 @@ export default function DiaPage({ params }) {
               {dia.descripcion}
             </p>
 
-            {/* Partner status */}
-            {partnerLinked && (
-              <div style={{
-                display: 'inline-flex', alignItems: 'center', gap: 'var(--space-sm)',
-                marginTop: 'var(--space-md)', padding: '6px 14px',
-                background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.2)',
-                borderRadius: 'var(--radius-full)', fontSize: '0.8rem', color: 'var(--color-success)',
-              }}>
-                💑 Pareja vinculada — las respuestas se compartirán mutuamente
-              </div>
-            )}
+            {/* Turn-based indicator */}
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 'var(--space-sm)',
+              marginTop: 'var(--space-md)', padding: '8px 16px',
+              background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)',
+              borderRadius: 'var(--radius-full)', fontSize: '0.8rem', color: '#818cf8',
+            }}>
+              📱 Un dispositivo, dos voces — responden por turnos
+            </div>
 
             {/* Progress */}
             <div style={{ marginTop: 'var(--space-xl)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--space-sm)' }}>
                 <span style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
-                  {answeredCount} de {totalQuestions} preguntas respondidas
+                  {completedCount} de {totalQuestions} preguntas completadas (ambos)
                 </span>
                 <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-primary-light)' }}>
                   {Math.round(progressPercent)}%
@@ -263,178 +253,29 @@ export default function DiaPage({ params }) {
             </div>
           </div>
 
-          {/* Questions */}
+          {/* Questions with Turn Handler */}
           <div className="stagger-children">
             {dia.preguntas.map((pregunta) => (
-              <div key={pregunta.index} className="question-card" style={{ animationDelay: `${pregunta.index * 0.05}s` }}>
-                <div className="question-header">
-                  <div className="question-number">{pregunta.index + 1}</div>
-                  <span className={`question-type ${pregunta.tipo}`}>
-                    {getQuestionTypeLabel(pregunta.tipo)}
-                  </span>
-                </div>
-
-                <p className="question-text">{pregunta.texto}</p>
-
-                <textarea
-                  className="input w-full"
-                  placeholder="Escribe tu respuesta aquí..."
-                  value={answers[pregunta.index] || ''}
-                  onChange={(e) => handleAnswerChange(pregunta.index, e.target.value)}
-                  style={{ minHeight: '100px' }}
-                />
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'var(--space-md)' }}>
-                  <button
-                    className="btn btn-primary btn-sm"
-                    onClick={() => handleSaveAnswer(pregunta.index)}
-                    disabled={!answers[pregunta.index] || answers[pregunta.index].trim() === ''}
-                  >
-                    💾 Guardar
-                  </button>
-                  {saved[pregunta.index] && (
-                    <span className="question-saved">
-                      ✅ Guardada
-                    </span>
-                  )}
-                </div>
-
-                {/* Partner's response (shared) */}
-                {partnerLinked && saved[pregunta.index] && partnerAnswers[pregunta.index] && (
-                  <div style={{ marginTop: 'var(--space-md)', borderTop: '1px solid var(--color-border)', paddingTop: 'var(--space-md)' }}>
-                    <button
-                      onClick={() => togglePartnerAnswer(pregunta.index)}
-                      style={{
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        color: 'var(--color-primary-light)', fontSize: '0.85rem',
-                        display: 'flex', alignItems: 'center', gap: '6px',
-                        fontFamily: 'var(--font-body)',
-                      }}
-                    >
-                      💑 {showPartner[pregunta.index] ? 'Ocultar respuesta de tu pareja' : 'Ver respuesta de tu pareja'}
-                      <span style={{
-                        transition: 'transform 0.2s ease',
-                        transform: showPartner[pregunta.index] ? 'rotate(180deg)' : 'rotate(0)',
-                        display: 'inline-block',
-                      }}>▼</span>
-                    </button>
-                    {showPartner[pregunta.index] && (
-                      <div style={{
-                        marginTop: 'var(--space-sm)',
-                        padding: 'var(--space-md)',
-                        background: 'rgba(232,99,111,0.06)',
-                        border: '1px solid rgba(232,99,111,0.15)',
-                        borderRadius: 'var(--radius-md)',
-                        borderLeft: '3px solid var(--color-primary)',
-                        animation: 'fadeInUp 0.3s ease',
-                      }}>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--color-primary-light)', marginBottom: '4px', fontWeight: 600 }}>
-                          💕 Respuesta de tu pareja:
-                        </div>
-                        <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
-                          {partnerAnswers[pregunta.index]}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* Unlock indicator */}
-                {partnerLinked && saved[pregunta.index] && !partnerAnswers[pregunta.index] && (
-                  <div style={{
-                    marginTop: 'var(--space-md)', paddingTop: 'var(--space-sm)',
-                    borderTop: '1px solid var(--color-border)',
-                    fontSize: '0.8rem', color: 'var(--color-text-muted)',
-                  }}>
-                    🔒 Tu pareja aún no ha respondido esta pregunta
-                  </div>
-                )}
-              </div>
+              <TurnHandler
+                key={pregunta.index}
+                pregunta={pregunta}
+                questionIndex={pregunta.index}
+                savedAnswers={allAnswers[pregunta.index]}
+                onSaveAnswer={handleSaveAnswer}
+                getQuestionTypeLabel={getQuestionTypeLabel}
+              />
             ))}
           </div>
 
-          {/* Connection Score */}
-          <div className="glass-card mt-2xl" style={{ textAlign: 'center' }}>
-            <h3 style={{ marginBottom: 'var(--space-lg)' }}>
-              📊 ¿Cómo te sientes de conectado/a hoy?
-            </h3>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-sm)', flexWrap: 'wrap', marginBottom: 'var(--space-lg)' }}>
-              {[1,2,3,4,5,6,7,8,9,10].map((score) => (
-                <button
-                  key={score}
-                  onClick={() => handleSaveConnectionScore(score)}
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: 'var(--radius-full)',
-                    border: connectionScore === score ? '2px solid var(--color-primary)' : '1px solid var(--color-border)',
-                    background: connectionScore === score ? 'var(--gradient-primary)' : 'var(--color-bg-card)',
-                    color: 'white',
-                    fontWeight: 700,
-                    fontSize: '1rem',
-                    cursor: 'pointer',
-                    transition: 'all var(--transition-fast)',
-                  }}
-                >
-                  {score}
-                </button>
-              ))}
+          {/* AI Analysis Section (shown after completing or when saved) */}
+          {(dayCompleted || analisis || loadingAnalisis) && (
+            <div style={{ marginTop: 'var(--space-2xl)' }}>
+              <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-xl)', fontSize: '1.4rem' }}>
+                🧠 Análisis de la IA
+              </h2>
+              <AnalisisIA analisis={analisis} loading={loadingAnalisis} />
             </div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
-              1 = muy desconectado/a · 10 = completamente conectado/a
-            </p>
-          </div>
-
-          {/* Daily Reflection */}
-          <div className="glass-card mt-lg">
-            <div
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}
-              onClick={() => setShowReflection(!showReflection)}
-            >
-              <h3>🧠 Reflexión del Día</h3>
-              <span style={{ fontSize: '1.2rem', transition: 'transform var(--transition-fast)', transform: showReflection ? 'rotate(180deg)' : 'rotate(0)' }}>
-                ▼
-              </span>
-            </div>
-
-            {showReflection && (
-              <div style={{ marginTop: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
-                <div className="input-group">
-                  <label>¿Cómo me sentí hoy?</label>
-                  <textarea
-                    className="input"
-                    placeholder="Describe tus emociones..."
-                    value={reflection.como_me_senti}
-                    onChange={(e) => setReflection(prev => ({ ...prev, como_me_senti: e.target.value }))}
-                    style={{ minHeight: '80px' }}
-                  />
-                </div>
-                <div className="input-group">
-                  <label>¿Qué aprendí de mi pareja?</label>
-                  <textarea
-                    className="input"
-                    placeholder="Algo nuevo que descubrí..."
-                    value={reflection.que_aprendi}
-                    onChange={(e) => setReflection(prev => ({ ...prev, que_aprendi: e.target.value }))}
-                    style={{ minHeight: '80px' }}
-                  />
-                </div>
-                <div className="input-group">
-                  <label>¿Qué quiero mejorar?</label>
-                  <textarea
-                    className="input"
-                    placeholder="Un aspecto en el que quiero trabajar..."
-                    value={reflection.que_quiero_mejorar}
-                    onChange={(e) => setReflection(prev => ({ ...prev, que_quiero_mejorar: e.target.value }))}
-                    style={{ minHeight: '80px' }}
-                  />
-                </div>
-                <button className="btn btn-secondary" onClick={handleSaveReflection}>
-                  💾 Guardar Reflexión
-                </button>
-              </div>
-            )}
-          </div>
+          )}
 
           {/* Complete Day Button */}
           <div className="text-center mt-2xl" style={{ paddingBottom: 'var(--space-4xl)' }}>
@@ -442,11 +283,11 @@ export default function DiaPage({ params }) {
               <button
                 className="btn btn-accent btn-lg"
                 onClick={handleCompleteDay}
-                disabled={answeredCount < 5}
+                disabled={completedCount < 5}
               >
-                {answeredCount < 5
-                  ? `Responde al menos 5 preguntas (${answeredCount}/${totalQuestions})`
-                  : `✅ Completar Día ${dia.numero}`
+                {completedCount < 5
+                  ? `Ambos deben responder al menos 5 preguntas (${completedCount}/${totalQuestions})`
+                  : `✅ Completar Día ${dia.numero} y ver análisis`
                 }
               </button>
             ) : (
@@ -454,7 +295,12 @@ export default function DiaPage({ params }) {
                 <p style={{ color: 'var(--color-success)', fontSize: '1.2rem', fontWeight: 600, marginBottom: 'var(--space-lg)' }}>
                   🎉 ¡Día {dia.numero} completado!
                 </p>
-                {dayNum < 30 ? (
+                {!analisis && !loadingAnalisis && (
+                  <button className="btn btn-primary mb-lg" onClick={requestAnalisis}>
+                    🧠 Generar Análisis IA
+                  </button>
+                )}
+                {dayNum < 14 ? (
                   <Link href={`/dia/${dayNum + 1}`} className="btn btn-primary btn-lg">
                     Siguiente: Día {dayNum + 1} →
                   </Link>
@@ -462,7 +308,7 @@ export default function DiaPage({ params }) {
                   <div className="glass-card" style={{ borderColor: 'var(--color-accent)', padding: 'var(--space-2xl)' }}>
                     <h2 style={{ marginBottom: 'var(--space-md)' }}>🏆 ¡PROGRAMA COMPLETADO!</h2>
                     <p style={{ fontSize: '1.1rem', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)' }}>
-                      Han completado los 30 días del programa. ¡Celebren juntos este logro increíble!
+                      Han completado los 14 días del programa. ¡Celebren juntos este logro increíble!
                     </p>
                     <Link href="/reporte" className="btn btn-accent btn-lg">
                       📊 Ver Reporte Final
@@ -480,7 +326,7 @@ export default function DiaPage({ params }) {
                 </Link>
               )}
               <div style={{ flex: 1 }}></div>
-              {dayNum < 30 && dayCompleted && (
+              {dayNum < 14 && dayCompleted && (
                 <Link href={`/dia/${dayNum + 1}`} className="btn btn-secondary btn-sm">
                   Día {dayNum + 1} →
                 </Link>

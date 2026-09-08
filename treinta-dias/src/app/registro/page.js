@@ -50,7 +50,7 @@ export default function RegistroPage() {
         </div>
         <h2 className="auth-title">Crea tu cuenta</h2>
         <p className="auth-subtitle">
-          Comienza tu programa de 30 días — el Día 1 es completamente gratis
+          Comienza tu programa de 14 días — el Día 1 es completamente gratis
         </p>
 
         {error && (

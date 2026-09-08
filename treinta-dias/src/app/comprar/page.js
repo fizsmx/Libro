@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ComprarPage() {
   const whatsappMessage = encodeURIComponent(
-    '¡Hola! 👋 Quiero activar mi código para el programa *30 Días Para Reconectar* 📘💕\n\n¿Cómo puedo realizar el pago?'
+    '¡Hola! 👋 Quiero activar mi código para el programa *14 Días Para Reconectar* 📘💕\n\n¿Cómo puedo realizar el pago?'
   );
   const whatsappLink = `https://wa.me/59176419099?text=${whatsappMessage}`;
 
@@ -12,7 +12,7 @@ export default function ComprarPage() {
     <>
       <header className="header">
         <div className="header-inner">
-          <Link href="/" className="header-logo">💕 <span>30 Días</span></Link>
+          <Link href="/" className="header-logo">💕 <span>14 Días</span></Link>
           <nav className="header-nav">
             <Link href="/">Inicio</Link>
             <Link href="/login">Iniciar Sesión</Link>
@@ -31,7 +31,7 @@ export default function ComprarPage() {
                 Adquiere tu Cuadernillo
               </h1>
               <p style={{ color: 'var(--color-text-secondary)', maxWidth: '500px', margin: '0 auto', fontSize: '1.05rem' }}>
-                30 días de conversaciones guiadas para reconectar con tu pareja
+                14 días de conversaciones guiadas para reconectar con tu pareja
               </p>
             </div>
 
@@ -61,7 +61,7 @@ export default function ComprarPage() {
 
               <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', marginBottom: 'var(--space-xl)' }}>
                 {[
-                  '📘 Cuadernillo de Terapia de Pareja — 30 días',
+                  '📘 Cuadernillo de Terapia de Pareja — 14 días',
                   '📖 Libro: Cómo manejar conversaciones difíciles',
                   '🤖 Chatbot especializado con IA',
                   '🎧 Podcast sobre terapia y conexión',
@@ -113,7 +113,7 @@ export default function ComprarPage() {
                   { step: '1', icon: '📲', title: 'Escríbenos por WhatsApp', desc: 'Haz clic en el botón de arriba' },
                   { step: '2', icon: '💳', title: 'Realiza el pago', desc: 'Transferencia, QR o Tigo Money — 70 Bs' },
                   { step: '3', icon: '🔑', title: 'Recibe tu código', desc: 'Te enviamos un código de activación al instante' },
-                  { step: '4', icon: '💕', title: '¡Comienza!', desc: 'Activa tu código y empieza los 30 días con tu pareja' },
+                  { step: '4', icon: '💕', title: '¡Comienza!', desc: 'Activa tu código y empieza los 14 días con tu pareja' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'center' }}>
                     <div style={{

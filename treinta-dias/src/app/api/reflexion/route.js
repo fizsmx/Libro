@@ -32,7 +32,7 @@ export async function POST(request) {
     const prompt = `${SYSTEM_PROMPT}
 
 CONTEXTO:
-- El usuario está en el Día ${dia} del programa "30 Días Para Reconectar" (terapia de pareja).
+- El usuario está en el Día ${dia} del programa "14 Días Para Reconectar" (terapia de pareja).
 - Tema del día: ${tema}
 - Pregunta que respondió: "${pregunta}"
 - Su respuesta: "${respuesta}"

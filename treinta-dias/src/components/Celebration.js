@@ -6,25 +6,13 @@ const MILESTONES = {
   7: {
     title: '¡Primera semana completada!',
     emoji: '🌟',
-    message: 'Han dedicado 7 días consecutivos a su relación. ¡Eso es compromiso real!',
+    message: 'Han dedicado 7 días consecutivos a su relación. ¡Eso es compromiso real! Ya están en la mitad del programa.',
     color: '#60A5FA',
   },
-  15: {
-    title: '¡Mitad del camino!',
-    emoji: '🔥',
-    message: 'Llevan 15 días trabajando juntos. Ya están viendo resultados, ¿verdad?',
-    color: '#F5B041',
-  },
-  21: {
-    title: '¡21 días — Se creó el hábito!',
-    emoji: '💪',
-    message: 'Dicen que 21 días crean un hábito. La reconexión ya es parte de su rutina.',
-    color: '#9B6DAB',
-  },
-  30: {
-    title: '¡30 DÍAS COMPLETADOS!',
+  14: {
+    title: '¡14 DÍAS COMPLETADOS!',
     emoji: '🏆',
-    message: 'Lo lograron. 30 días de conversaciones profundas, reflexiones y crecimiento juntos. ¡Celebren este logro!',
+    message: 'Lo lograron. 14 días de conversaciones profundas, reflexiones y crecimiento juntos. ¡Celebren este logro increíble!',
     color: '#4ADE80',
   },
 };

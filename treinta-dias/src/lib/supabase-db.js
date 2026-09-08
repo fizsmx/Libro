@@ -182,7 +182,7 @@ export async function generateCodes(count, adminUserId) {
 
   const codes = [];
   for (let i = 0; i < count; i++) {
-    const code = '30DIAS-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+    const code = '14DIAS-' + Math.random().toString(36).substr(2, 6).toUpperCase();
     codes.push({
       codigo: code,
       creado_por: adminUserId,
